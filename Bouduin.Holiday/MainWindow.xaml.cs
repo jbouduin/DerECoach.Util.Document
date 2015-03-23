@@ -1,5 +1,7 @@
 ﻿
-using Bouduin.Lib.Holiday;
+using Bouduin.Holiday.ViewModels.HolidayGrid;
+using Bouduin.Holiday.ViewModels.LocationTree;
+using Bouduin.Holiday.Views;
 
 namespace Bouduin.Holiday
 {
@@ -11,7 +13,10 @@ namespace Bouduin.Holiday
         public MainWindow()
         {
             InitializeComponent();
-            var test = Service.GetSupportedLocations();
+            var holidayGridViewModel = new HolidayGridViewModel();
+            var locationTreeViewModel = new LocationTreeViewModel(holidayGridViewModel);
+            TreeViewGrid.Children.Add(new LocationTreeView(locationTreeViewModel));
+            ContentGrid.Children.Add(new HolidayGrid(holidayGridViewModel));
         }
     }
 }

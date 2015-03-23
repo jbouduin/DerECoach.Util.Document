@@ -7,8 +7,8 @@
     <ProjectGuid>{EC47E1F9-399D-4F49-B9E3-0A72BCC2DE99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bouduin.Lib.Holiday</RootNamespace>
-    <AssemblyName>Bouduin.Lib.Holiday</AssemblyName>
+    <RootNamespace>Bouduin.Lib.Holidays</RootNamespace>
+    <AssemblyName>Bouduin.Lib.Holidays</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -43,8 +43,16 @@
   <ItemGroup>
     <Compile Include="Configurations\Configuration.cs" />
     <Compile Include="Configurations\Holiday.designer.cs" />
-    <Compile Include="HolidayService.cs" />
-    <Compile Include="IHolidayService.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\NotifyPropertyChangedExtensions.cs" />
+    <Compile Include="Interface\HolidayDate.cs" />
+    <Compile Include="Interface\IHolidayDate.cs" />
+    <Compile Include="Services\CalendarService.cs" />
+    <Compile Include="Services\ChristianHolidayService.cs" />
+    <Compile Include="Services\HolidayService.cs" />
+    <Compile Include="Services\ICalendarService.cs" />
+    <Compile Include="Services\IChristianHolidayService.cs" />
+    <Compile Include="Interface\IHolidayService.cs" />
     <Compile Include="Locations\ILocation.cs" />
     <Compile Include="Locations\Location.cs" />
     <Compile Include="Configurations\ConfigurationService.cs" />
@@ -57,7 +65,7 @@
     <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
+    <Folder Include="Resources\Flags\Size16\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Bouduin.Lib.Holiday.Locations
+namespace Bouduin.Lib.Holidays.Locations
 {
     internal class Location: ILocation
     {
@@ -8,7 +8,7 @@ namespace Bouduin.Lib.Holiday.Locations
         #endregion
         
         #region ILocation Members ---------------------------------------------
-
+        public string Flag { get; private set; }
         public string Path { get; private set; }
 
         public string Description { get; internal set; }

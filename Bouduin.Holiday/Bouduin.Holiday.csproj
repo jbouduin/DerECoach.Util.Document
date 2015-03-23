@@ -56,10 +56,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="ViewModels\HolidayGrid\HolidayGridViewModel.cs" />
     <Compile Include="ViewModels\LocationTree\LocationTreeViewModel.cs" />
+    <Compile Include="Views\HolidayGrid.xaml.cs">
+      <DependentUpon>HolidayGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LocationTree\ImageConverter.cs" />
     <Compile Include="Views\LocationTreeView.xaml.cs">
       <DependentUpon>LocationTreeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LocationTree\LocationTreeViewItemViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +78,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\HolidayGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LocationTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,7 +120,7 @@
       <Name>Bouduin.Lib.Holiday</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />   
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

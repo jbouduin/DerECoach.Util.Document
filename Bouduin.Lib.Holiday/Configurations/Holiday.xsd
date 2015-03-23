@@ -280,8 +280,11 @@
 			<enumeration value="ON_SATURDAY"></enumeration>
 			<enumeration value="ON_SUNDAY"></enumeration>
 			<enumeration value="ON_WEEKEND"></enumeration>
+      <enumeration value="ON_MONDAY"></enumeration>
 			<enumeration value="ON_TUESDAY"></enumeration>
 			<enumeration value="ON_WEDNESDAY"></enumeration>
+      <enumeration value="ON_THURSDAY"></enumeration>
+      <enumeration value="ON_FRIDAY"></enumeration>
 		</restriction>
 	</simpleType>
 
@@ -295,7 +298,7 @@
 
 
 	<complexType name="MovingCondition">
-		<attribute name="substitute" type="tns:Weekday"></attribute>
+		<attribute name="substitute" type="tns:Substituted"></attribute>
 		<attribute name="with" type="tns:With"></attribute>
 		<attribute name="weekday" type="tns:Weekday"></attribute>
 	</complexType>

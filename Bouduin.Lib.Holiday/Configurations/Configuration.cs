@@ -3,7 +3,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Bouduin.Lib.Holiday.Configurations
+namespace Bouduin.Lib.Holidays.Configurations
 {
     public partial class Configuration
     {

@@ -1,34 +1,30 @@
-﻿using Bouduin.Lib.Holiday.Configurations;
-using Bouduin.Lib.Holiday.Locations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
+using Bouduin.Lib.Holidays.Configurations;
+using Bouduin.Lib.Holidays.Interface;
+using Bouduin.Lib.Holidays.Locations;
+using Bouduin.Lib.Holidays.Services;
 
-namespace Bouduin.Lib.Holiday
+namespace Bouduin.Lib.Holidays
 {
     public class Service
     {
         #region factory methods -----------------------------------------------
         public static IHolidayService GetHolidayService()
         {
-            return new HolidayService(CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
-        }
-
-        public static IHolidayService GetHolidayService(string location)
-        {
-            return new HolidayService(location);
-        }
-
-        public static IHolidayService GetHolidayService(string location, params string[] hierarchy)
-        {
-            return new HolidayService(location, hierarchy);
+            return new HolidayService(ConfigurationService, ChristianHolidayService, CalendarService);
         }
         #endregion
 
         #region query methods -------------------------------------------------
-        private static readonly IConfigurationService LocationService = new ConfigurationService();
+        private static readonly IConfigurationService ConfigurationService = new ConfigurationService();
+        private static readonly ICalendarService CalendarService = new CalendarService();
+        private static readonly IChristianHolidayService ChristianHolidayService = new ChristianHolidayService(CalendarService);
+
+
         public static IEnumerable<ILocation> GetSupportedLocations()
         {
-            return LocationService.GetSupportedLocations();
+            return ConfigurationService.GetSupportedLocations();
         }
 
         #endregion

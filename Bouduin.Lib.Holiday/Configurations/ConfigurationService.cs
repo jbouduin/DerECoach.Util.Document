@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Bouduin.Lib.Holiday.Locations;
+using Bouduin.Lib.Holidays.Locations;
 
-namespace Bouduin.Lib.Holiday.Configurations
+namespace Bouduin.Lib.Holidays.Configurations
 {
 
     internal interface IConfigurationService
     {
         IEnumerable<ILocation> GetSupportedLocations();
-        void GetLocationDetails(ILocation location, bool deepLoad);
+        Dictionary<string,Holidays> GetHolidays(string hierarchyPath);
+
     }
     /// <summary>
     /// The location provider
@@ -41,7 +42,7 @@ namespace Bouduin.Lib.Holiday.Configurations
                 }
                 // ReSharper restore EmptyGeneralCatchClause
             });
-
+            
         }
 
 
@@ -60,6 +61,28 @@ namespace Bouduin.Lib.Holiday.Configurations
             return supportedLocations;
         }
 
+        public Dictionary<string,Holidays> GetHolidays(string hierarchyPath)
+        {
+            var splittedPath = hierarchyPath.Split(new[] {'/'});
+            var result = new Dictionary<string, Holidays>();
+            if (splittedPath.Length == 0)
+                throw new ArgumentException("hierarchyPath");
+
+            var configuration = _configurations[splittedPath[0]];
+            result.Add(splittedPath[0], configuration.Holidays);
+
+            for (var i = 1; i < splittedPath.Length; i++)
+            {
+                configuration = configuration[splittedPath[i]];
+                result.Add(splittedPath[i], configuration.Holidays);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region helper methods ------------------------------------------------
         private void ProcessHierarchy(Location location, Configuration configuration)
         {
             configuration.SubConfigurations.ForEach(sub =>
@@ -67,10 +90,6 @@ namespace Bouduin.Lib.Holiday.Configurations
                 var subLocation = location.AddChild(sub.hierarchy, sub.description);
                 ProcessHierarchy(subLocation, sub);
             });
-        }
-        public void GetLocationDetails(ILocation location, bool deepLoad)
-        {
-
         }
         #endregion
 
