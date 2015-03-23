@@ -4,7 +4,7 @@ namespace Bouduin.Lib.Holiday.Locations
 {
     public interface ILocation
     {
-        string Code { get; }
+        string Path { get; }
         string Description { get; }
         List<ILocation> Children { get; }
     }

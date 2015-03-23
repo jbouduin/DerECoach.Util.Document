@@ -8,6 +8,7 @@ namespace Bouduin.Lib.Holiday
     {
         private string _location;
         private string[] _hierarchy;
+
         #region constructors --------------------------------------------------
         public HolidayService(string location)
         {

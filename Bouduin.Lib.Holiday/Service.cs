@@ -1,4 +1,5 @@
-﻿using Bouduin.Lib.Holiday.Locations;
+﻿using Bouduin.Lib.Holiday.Configurations;
+using Bouduin.Lib.Holiday.Locations;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -24,7 +25,7 @@ namespace Bouduin.Lib.Holiday
         #endregion
 
         #region query methods -------------------------------------------------
-        private static readonly ILocationService LocationService = new LocationService();
+        private static readonly IConfigurationService LocationService = new ConfigurationService();
         public static IEnumerable<ILocation> GetSupportedLocations()
         {
             return LocationService.GetSupportedLocations();

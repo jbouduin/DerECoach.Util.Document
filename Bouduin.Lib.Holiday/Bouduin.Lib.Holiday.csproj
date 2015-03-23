@@ -41,22 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parsers\HeaderParser.cs" />
+    <Compile Include="Configurations\Configuration.cs" />
+    <Compile Include="Configurations\Holiday.designer.cs" />
     <Compile Include="HolidayService.cs" />
     <Compile Include="IHolidayService.cs" />
-    <Compile Include="Locations\ILevel1Location.cs" />
     <Compile Include="Locations\ILocation.cs" />
     <Compile Include="Locations\Location.cs" />
-    <Compile Include="Locations\LocationService.cs" />
+    <Compile Include="Configurations\ConfigurationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Constants\HolidayKeys.Christian.cs" />
-    <Compile Include="Resources\Constants\HolidayKeys.cs" />
-    <Compile Include="Resources\Constants\HolidayKeys.Ethiopian.Orthodox.cs" />
-    <Compile Include="Resources\Constants\HolidayKeys.Islamic.cs" />
-    <Compile Include="Resources\Constants\Holidays.cs" />
-    <Compile Include="Resources\Constants\Location.cs" />
-    <Compile Include="Resources\Constants\Month.cs" />
-    <Compile Include="Resources\Constants\Weekday.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Holiday\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +204,7 @@
     </Content>
     <Content Include="Data\Holidays_nyse.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Data\Holidays_pa.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -246,6 +238,7 @@
     </Content>
     <Content Include="Data\Holidays_sk.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Data\Holidays_target.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -264,9 +257,11 @@
     </Content>
     <Content Include="Data\Holidays_ve.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Data\Holidays_za.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +269,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configurations\Holiday.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

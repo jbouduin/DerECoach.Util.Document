@@ -2,30 +2,41 @@
 
 namespace Bouduin.Lib.Holiday.Locations
 {
-    internal class Location: ILevel1Location
+    internal class Location: ILocation
     {
-        #region ILocation Members ---------------------------------------------
-        public string Code { get; internal set; }
+        #region fields --------------------------------------------------------
+        #endregion
         
+        #region ILocation Members ---------------------------------------------
+
+        public string Path { get; private set; }
+
         public string Description { get; internal set; }
         public List<ILocation> Children { get; private set; }
-
-        #endregion
-
-        #region ILevel1Location members ----------------------------------------
-
-        public string FileName { get; private set; }
-
         #endregion
 
         #region constructor ---------------------------------------------------
-        internal Location(string fileName)
+        private Location(string description)
         {
             Children = new List<ILocation>();
-            FileName = fileName;
+            Description = description;
+        }
+        #endregion
+
+        #region factory methods -----------------------------------------------
+
+        internal static Location CreateRootLocation(string hierarchy, string description)
+        {
+            var result = new Location(description) {Path = hierarchy};
+            return result;
         }
 
-         
+        internal Location AddChild(string hierarchy, string description)
+        {
+            var result = new Location(description) {Path = string.Format(@"{0}/{1}", Path, hierarchy)};
+            Children.Add(result);
+            return result;
+        }
         #endregion
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using Bouduin.Lib.Holiday;
+
 namespace Bouduin.Holiday
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace Bouduin.Holiday
         public MainWindow()
         {
             InitializeComponent();
-
+            var test = Service.GetSupportedLocations();
         }
     }
 }
