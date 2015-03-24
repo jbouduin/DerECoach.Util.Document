@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Bouduin.Lib.Holidays;
 using Bouduin.Lib.Holidays.Extensions;
 using Bouduin.Lib.Holidays.Interface;
@@ -56,7 +57,7 @@ namespace Bouduin.Holiday.ViewModels.HolidayGrid
 
         private void LoadHolidays()
         {
-            var serviceResult = Service.GetHolidayService().GetHolidayDates(CurrentLocation.Path, DateTime.Today.Year);
+            var serviceResult = Service.GetHolidayService().GetHolidayDates(CurrentLocation.Path, DateTime.Today.Year, CultureInfo.CurrentUICulture);
 
             _currentHolidays.Clear();
             serviceResult.OrderBy(ob => ob.Date).ToList().ForEach(_currentHolidays.Add);

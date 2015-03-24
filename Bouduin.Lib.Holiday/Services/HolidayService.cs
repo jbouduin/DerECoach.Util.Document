@@ -1,4 +1,5 @@
-﻿using Bouduin.Lib.Holidays.Configurations;
+﻿using System.Globalization;
+using Bouduin.Lib.Holidays.Configurations;
 using Bouduin.Lib.Holidays.Interface;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,25 @@ namespace Bouduin.Lib.Holidays.Services
         private readonly IConfigurationService _configurationService;
         private readonly IChristianHolidayService _christianHolidayService;
         private readonly ICalendarService _calendarService;
-
+        private readonly ILocalizationService _localizationService;
         #region constructors --------------------------------------------------
-        public HolidayService(IConfigurationService configurationService, IChristianHolidayService christianHolidayService, ICalendarService calendarService)
+        public HolidayService(IConfigurationService configurationService, ILocalizationService localizationService,
+            IChristianHolidayService christianHolidayService, ICalendarService calendarService)
         {
             _configurationService = configurationService;
             _christianHolidayService = christianHolidayService;
             _calendarService = calendarService;
+            _localizationService = localizationService;
         }
 
         #endregion
 
         #region IHolidayService members ---------------------------------------
 
-        public IEnumerable<IHolidayDate> GetHolidayDates(string hierarchyPath, int year)
+        public IEnumerable<IHolidayDate> GetHolidayDates(string hierarchyPath, int year, CultureInfo cultureInfo)
         {
+            _localizationService.SetCurrentCulture(cultureInfo);
             var definitions = _configurationService.GetHolidays(hierarchyPath);
-            
             var result = new List<IHolidayDate>();
             definitions.ToList().ForEach(fe => result.AddRange(ProcessHolidays(fe.Key, fe.Value, year)));
             return result;
@@ -44,7 +47,8 @@ namespace Bouduin.Lib.Holidays.Services
             {
                 var date = _christianHolidayService.GetChristianHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.type.ToString()));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetChristianHolidayDescription(fe.type.ToString())));
             });
 
             // TODO
@@ -57,28 +61,32 @@ namespace Bouduin.Lib.Holidays.Services
             {
                 var date = _calendarService.GetFixedHolidyday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path,path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
 
             holidays.FixedWeekday.ForEach(fe =>
             {
                 var date = _calendarService.GetFixedWeekdayInMonthHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
 
             holidays.FixedWeekdayBetweenFixed.ForEach(fe =>
             {
                 var date = _calendarService.GetFixedWeekdayBetweenFixedHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
 
             holidays.FixedWeekdayRelativeToFixed.ForEach(fe =>
             {
                 var date = _calendarService.GetFixedWeekdayRelativeToFixedHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
 
             // TODO
@@ -101,21 +109,24 @@ namespace Bouduin.Lib.Holidays.Services
             {
                 var date = _calendarService.GetRelativeToEasterSundayHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
 
             holidays.RelativeToFixed.ForEach(fe =>
             {
                 var date = _calendarService.GetRelativeToFixedHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
 
             holidays.RelativeToWeekdayInMonth.ForEach(fe =>
             {
                 var date = _calendarService.GetRelativeToWeekdayInMonthHoliday(fe, year);
                 if (date.HasValue)
-                    result.Add(new HolidayDate(date.Value, path, path, fe.descriptionPropertiesKey));
+                    result.Add(new HolidayDate(date.Value, path, path,
+                        _localizationService.GetHolidayDescription(fe.descriptionPropertiesKey)));
             });
             return result;
         }

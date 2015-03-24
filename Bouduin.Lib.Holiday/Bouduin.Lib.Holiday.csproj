@@ -57,12 +57,9 @@
     <Compile Include="Locations\Location.cs" />
     <Compile Include="Configurations\ConfigurationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
     <Compile Include="Service.cs" />
+    <Compile Include="Services\ILocalizationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Flags\Size16\" />
@@ -273,10 +270,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Resources\Descriptions.de.resx">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Descriptions.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Descriptions.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Descriptions.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Descriptions.pt.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Descriptions.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Configurations\Holiday.xsd">

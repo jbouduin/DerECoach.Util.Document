@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Bouduin.Lib.Holidays.Locations;
+using Bouduin.Lib.Holidays.Services;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using Bouduin.Lib.Holidays.Locations;
 
 namespace Bouduin.Lib.Holidays.Configurations
 {
 
     internal interface IConfigurationService
     {
-        IEnumerable<ILocation> GetSupportedLocations();
+        IEnumerable<ILocation> GetSupportedLocations(CultureInfo cultureInfo);
         Dictionary<string,Holidays> GetHolidays(string hierarchyPath);
 
     }
@@ -18,11 +20,13 @@ namespace Bouduin.Lib.Holidays.Configurations
     /// </summary>
     internal class ConfigurationService: IConfigurationService
     {
-        private readonly Dictionary<string, Configuration> _configurations = new Dictionary<string, Configuration>(); 
+        private readonly Dictionary<string, Configuration> _configurations = new Dictionary<string, Configuration>();
+        private readonly ILocalizationService _localizationService;
         #region constructor ---------------------------------------------------
 
-        public ConfigurationService()
+        public ConfigurationService(ILocalizationService localizationService)
         {
+            _localizationService = localizationService;
             LoadHierarchies();
         }
 
@@ -36,7 +40,7 @@ namespace Bouduin.Lib.Holidays.Configurations
                     _configurations.Add(configuration.hierarchy, configuration);
                 }
                 // ReSharper disable EmptyGeneralCatchClause
-                catch (Exception e)
+                catch (Exception)
                 {
                     // do nothing, the file is invalid anyway
                 }
@@ -49,12 +53,14 @@ namespace Bouduin.Lib.Holidays.Configurations
         #endregion
 
         #region ILocationService members --------------------------------------
-        public IEnumerable<ILocation> GetSupportedLocations()
+        public IEnumerable<ILocation> GetSupportedLocations(CultureInfo cultureInfo)
         {
+            _localizationService.SetCurrentCulture(cultureInfo);
+
             var supportedLocations =  _configurations.Values.Select(configuration =>
             {
-                // TODO localization
-                var result = Location.CreateRootLocation(configuration.hierarchy, configuration.description);
+                var description = _localizationService.GetHierarchyDescription(configuration.hierarchy, configuration.description);
+                var result = Location.CreateRootLocation(configuration.hierarchy, description);
                 ProcessHierarchy(result, configuration);
                 return result;
             });
@@ -69,13 +75,14 @@ namespace Bouduin.Lib.Holidays.Configurations
                 throw new ArgumentException("hierarchyPath");
 
             var configuration = _configurations[splittedPath[0]];
-            result.Add(splittedPath[0], configuration.Holidays);
+            var currentPath = splittedPath[0];
+            result.Add(currentPath, configuration.Holidays);
 
-            // TODO nicaragua throws an error => ni/ni
             for (var i = 1; i < splittedPath.Length; i++)
             {
+                currentPath = string.Format(@"{0}/{1}", currentPath, splittedPath[i]);
                 configuration = configuration[splittedPath[i]];
-                result.Add(splittedPath[i], configuration.Holidays);
+                result.Add(currentPath, configuration.Holidays);
             }
 
             return result;
@@ -88,7 +95,10 @@ namespace Bouduin.Lib.Holidays.Configurations
         {
             configuration.SubConfigurations.ForEach(sub =>
             {
-                var subLocation = location.AddChild(sub.hierarchy, sub.description);
+                var description =
+                    _localizationService.GetHierarchyDescription(
+                        string.Format(@"{0}/{1}", location.Path, sub.hierarchy), sub.description);
+                var subLocation = location.AddChild(sub.hierarchy, description);
                 ProcessHierarchy(subLocation, sub);
             });
         }
