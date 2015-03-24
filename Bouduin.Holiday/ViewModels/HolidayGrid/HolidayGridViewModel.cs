@@ -14,6 +14,7 @@ namespace Bouduin.Holiday.ViewModels.HolidayGrid
     {
         ILocation CurrentLocation { get; set; }
         ObservableCollection<IHolidayDate> CurrentHolidays { get; }
+        CultureInfo CurrentCultureInfo { get; set; }
     }
 
     internal class HolidayGridViewModel: IHolidayGridViewModel, INotifyPropertyChanged
@@ -24,6 +25,17 @@ namespace Bouduin.Holiday.ViewModels.HolidayGrid
 
         #region IHolidayGridViewModel members ---------------------------------
 
+        private CultureInfo _currentCultureInfo;
+
+        public CultureInfo CurrentCultureInfo
+        {
+            get { return _currentCultureInfo; }
+            set
+            {
+                _currentCultureInfo = value;
+                LoadHolidays();
+            }
+        }
         private ILocation _currentLocation;
         public ILocation CurrentLocation
         {
@@ -57,11 +69,13 @@ namespace Bouduin.Holiday.ViewModels.HolidayGrid
 
         private void LoadHolidays()
         {
-            var serviceResult = Service.GetHolidayService().GetHolidayDates(CurrentLocation.Path, DateTime.Today.Year, CultureInfo.CurrentUICulture);
+            if (CurrentLocation == null)
+                return;
+
+            var serviceResult = Service.GetHolidayService().GetHolidayDates(CurrentLocation.Path, DateTime.Today.Year, CurrentCultureInfo);
 
             _currentHolidays.Clear();
             serviceResult.OrderBy(ob => ob.Date).ToList().ForEach(_currentHolidays.Add);
-            
         }
 
         #endregion

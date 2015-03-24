@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Extensions\MenuItemExtensions.cs" />
+    <Compile Include="ViewModels\MainWindow\LocalisationMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MainWindow\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\HolidayGrid\HolidayGridViewModel.cs" />
     <Compile Include="ViewModels\LocationTree\LocationTreeViewModel.cs" />
     <Compile Include="Views\HolidayGrid.xaml.cs">
