@@ -1,17 +1,20 @@
-﻿using System.Globalization;
-using Bouduin.Lib.Holidays.Configurations;
+﻿using Bouduin.Lib.Holidays.Configurations;
 using Bouduin.Lib.Holidays.Interface;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Bouduin.Lib.Holidays.Services
 {
     internal class HolidayService: IHolidayService
     {
+        #region fields --------------------------------------------------------
         private readonly IConfigurationService _configurationService;
         private readonly IChristianHolidayService _christianHolidayService;
         private readonly ICalendarService _calendarService;
         private readonly ILocalizationService _localizationService;
+        #endregion
+
         #region constructors --------------------------------------------------
         public HolidayService(IConfigurationService configurationService, ILocalizationService localizationService,
             IChristianHolidayService christianHolidayService, ICalendarService calendarService)
@@ -34,7 +37,6 @@ namespace Bouduin.Lib.Holidays.Services
             definitions.ToList().ForEach(fe => result.AddRange(ProcessHolidays(fe.Key, fe.Value, year)));
             return result;
         }
-        
 
         #endregion
 

@@ -370,6 +370,7 @@ namespace Bouduin.Lib.Holidays.Services
                     throw new ArgumentOutOfRangeException("weekday");
             }
         }
+        
         private DateTime GetJulianEasternSunday(int year)
         {
             var a = year%4;

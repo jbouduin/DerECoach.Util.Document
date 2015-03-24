@@ -13,15 +13,18 @@ namespace Bouduin.Lib.Holidays.Configurations
     {
         IEnumerable<ILocation> GetSupportedLocations(CultureInfo cultureInfo);
         Dictionary<string,Holidays> GetHolidays(string hierarchyPath);
-
     }
+
     /// <summary>
     /// The location provider
     /// </summary>
     internal class ConfigurationService: IConfigurationService
     {
+        #region fields --------------------------------------------------------
         private readonly Dictionary<string, Configuration> _configurations = new Dictionary<string, Configuration>();
         private readonly ILocalizationService _localizationService;
+        #endregion
+
         #region constructor ---------------------------------------------------
 
         public ConfigurationService(ILocalizationService localizationService)
@@ -103,7 +106,6 @@ namespace Bouduin.Lib.Holidays.Configurations
             });
         }
         #endregion
-
-
+        
     }
 }

@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-using System.Linq;
-using Bouduin.Lib.Holidays;
+﻿using Bouduin.Lib.Holidays;
 using Bouduin.Lib.Holidays.Extensions;
 using Bouduin.Lib.Holidays.Interface;
 using Bouduin.Lib.Holidays.Locations;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
 
 namespace Bouduin.Holiday.ViewModels.HolidayGrid
 {
@@ -65,7 +65,6 @@ namespace Bouduin.Holiday.ViewModels.HolidayGrid
         }
 
         #endregion
-
-
+        
     }
 }

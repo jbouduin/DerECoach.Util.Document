@@ -1,11 +1,9 @@
 ﻿
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Documents;
 using Bouduin.Holiday.ViewModels.HolidayGrid;
-using Bouduin.Holiday.Views;
 using Bouduin.Lib.Holidays;
 using Bouduin.Lib.Holidays.Locations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Bouduin.Holiday.ViewModels.LocationTree
 {
@@ -17,7 +15,7 @@ namespace Bouduin.Holiday.ViewModels.LocationTree
     internal class LocationTreeViewModel: ILocationTreeViewModel
     {
         #region fields --------------------------------------------------------
-        private IHolidayGridViewModel _holidayGridViewModel;
+        private readonly IHolidayGridViewModel _holidayGridViewModel;
         #endregion
 
         #region ILocationTreeViewModel members --------------------------------

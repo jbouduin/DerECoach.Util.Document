@@ -7,11 +7,11 @@ namespace Bouduin.Lib.Holidays.Services
     internal class LocalizationService : ILocalizationService
     {
         #region fields --------------------------------------------------------
-
         private CultureInfo _cultureInfo;
         private ResourceManager _resourceManager;
         #endregion
 
+        #region properties ----------------------------------------------------
         internal ResourceManager ResourceManager
         {
             get
@@ -24,41 +24,37 @@ namespace Bouduin.Lib.Holidays.Services
                 return _resourceManager;
             }
         }
+        #endregion
+
         #region ILocalizationService members ----------------------------------
         public string GetHierarchyDescription(string hierarchyPath, string defaultValue)
         {
             var descriptionKey = string.Format(@"country_description_{0}", hierarchyPath.Replace('/', '_'));
-            var test = ResourceManager.GetString(descriptionKey, _cultureInfo);
             return ResourceManager.GetString(descriptionKey, _cultureInfo) ?? defaultValue;
         }
 
         public string GetHolidayDescription(string descriptionKey)
         {
             var resourceKey = string.Format(@"holiday_description_{0}", descriptionKey);
-            var test = ResourceManager.GetString(resourceKey, _cultureInfo);
             return ResourceManager.GetString(resourceKey, _cultureInfo) ?? descriptionKey;
         }
 
         public string GetChristianHolidayDescription(string descriptionKey)
         {
             var resourceKey = string.Format(@"holiday_description_christian_{0}", descriptionKey);
-            var test = ResourceManager.GetString(resourceKey, _cultureInfo);
             return ResourceManager.GetString(resourceKey, _cultureInfo) ?? descriptionKey;
         }
 
         public string GetEthiopianOrthodoxHolidayDescription(string descriptionKey)
         {
             var resourceKey = string.Format(@"holiday_description_ethiopian_orthodox_{0}", descriptionKey);
-            var test = ResourceManager.GetString(resourceKey, _cultureInfo);
             return ResourceManager.GetString(resourceKey, _cultureInfo) ?? descriptionKey;
         }
 
         public string GetIslamicHolidayDescription(string descriptionKey)
         {
             var resourceKey = string.Format(@"holiday_description_islamic_{0}", descriptionKey);
-            var test = ResourceManager.GetString(resourceKey, _cultureInfo);
             return ResourceManager.GetString(resourceKey, _cultureInfo) ?? descriptionKey;
-        
         }
 
         public void SetCurrentCulture(CultureInfo cultureInfo)
@@ -74,7 +70,6 @@ namespace Bouduin.Lib.Holidays.Services
             _cultureInfo = cultureInfo;
         }
         #endregion
-
-
+        
     }
 }

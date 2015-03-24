@@ -7,18 +7,14 @@ namespace Bouduin.Lib.Holidays.Services
     internal class ChristianHolidayService: IChristianHolidayService
     {
         #region fields --------------------------------------------------------
-
         private readonly ICalendarService _calendarService;
-
         #endregion
 
         #region constructor ---------------------------------------------------
-
         internal ChristianHolidayService(ICalendarService calendarService)
         {
             _calendarService = calendarService;
         }
-
         #endregion
 
         #region IChristianHolidayService members ------------------------------
