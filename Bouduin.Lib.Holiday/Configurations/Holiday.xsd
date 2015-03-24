@@ -295,10 +295,8 @@
 		</restriction>
 	</simpleType>
 
-
-
 	<complexType name="MovingCondition">
-		<attribute name="substitute" type="tns:Substituted"></attribute>
+		<attribute name="substitute" type="tns:Weekday"></attribute>
 		<attribute name="with" type="tns:With"></attribute>
 		<attribute name="weekday" type="tns:Weekday"></attribute>
 	</complexType>

@@ -8,9 +8,7 @@ namespace Bouduin.Lib.Holidays.Locations
         #endregion
         
         #region ILocation Members ---------------------------------------------
-        public string Flag { get; private set; }
         public string Path { get; private set; }
-
         public string Description { get; internal set; }
         public List<ILocation> Children { get; private set; }
         #endregion

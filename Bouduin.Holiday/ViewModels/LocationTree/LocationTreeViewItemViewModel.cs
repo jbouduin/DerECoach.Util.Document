@@ -18,7 +18,7 @@ namespace Bouduin.Holiday.ViewModels.LocationTree
     {
         #region fields --------------------------------------------------------
         private readonly ILocation _location;
-        private IHolidayGridViewModel _holidayGridViewModel;
+        private readonly IHolidayGridViewModel _holidayGridViewModel;
         #endregion
 
         #region ILocationTreeViewItemViewModel members ------------------------
@@ -44,16 +44,15 @@ namespace Bouduin.Holiday.ViewModels.LocationTree
             }
         }
 
-        private bool _isExpanded;
-        public bool IsExpanded
-        {
-            get { return _isExpanded; }
-            set { _isExpanded = value; }
-        }
+        public bool IsExpanded { get; set; }
 
         public string Flag
         {
-            get { return _location.Flag; }
+            get
+            {
+                return null;
+                //_location.Flag; 
+            }
         }
 
         public string Description

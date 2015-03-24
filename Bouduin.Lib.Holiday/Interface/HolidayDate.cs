@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Bouduin.Lib.Holidays.Interface
 {
@@ -11,6 +8,7 @@ namespace Bouduin.Lib.Holidays.Interface
         public string Path { get; private set; }
         public string Hierarchy { get; private set; }
         public string Description { get; private set; }
+        // TODO public string LocalizedHolidayType { get; private set }
 
         internal HolidayDate(DateTime date, string path, string hierarchy, string description)
         {

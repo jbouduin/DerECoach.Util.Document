@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using Bouduin.Lib.Holidays.Configurations;
+﻿using Bouduin.Lib.Holidays.Configurations;
 using Bouduin.Lib.Holidays.Interface;
 using Bouduin.Lib.Holidays.Locations;
 using Bouduin.Lib.Holidays.Services;
+using System.Collections.Generic;
 
 namespace Bouduin.Lib.Holidays
 {

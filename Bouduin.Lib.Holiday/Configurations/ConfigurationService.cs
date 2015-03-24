@@ -36,7 +36,7 @@ namespace Bouduin.Lib.Holidays.Configurations
                     _configurations.Add(configuration.hierarchy, configuration);
                 }
                 // ReSharper disable EmptyGeneralCatchClause
-                catch (Exception)
+                catch (Exception e)
                 {
                     // do nothing, the file is invalid anyway
                 }
@@ -71,6 +71,7 @@ namespace Bouduin.Lib.Holidays.Configurations
             var configuration = _configurations[splittedPath[0]];
             result.Add(splittedPath[0], configuration.Holidays);
 
+            // TODO nicaragua throws an error => ni/ni
             for (var i = 1; i < splittedPath.Length; i++)
             {
                 configuration = configuration[splittedPath[i]];

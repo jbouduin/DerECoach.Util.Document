@@ -425,14 +425,14 @@ namespace Bouduin.Lib.Holidays.Configurations
     public partial class MovingCondition
     {
 
-        private Substituted substituteField;
+        private Weekday substituteField;
 
         private With withField;
 
         private Weekday weekdayField;
 
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public Substituted substitute
+        public Weekday substitute
         {
             get
             {
@@ -475,52 +475,6 @@ namespace Bouduin.Lib.Holidays.Configurations
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.example.org/Holiday")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.example.org/Holiday", IsNullable = false)]
-    public enum Substituted
-    {
-
-        /// <remarks/>
-        ON_SATURDAY,
-
-        /// <remarks/>
-        ON_SUNDAY,
-
-        /// <remarks/>
-        ON_WEEKEND,
-
-        /// <remarks/>
-        ON_MONDAY,
-
-        /// <remarks/>
-        ON_TUESDAY,
-
-        /// <remarks/>
-        ON_WEDNESDAY,
-
-        /// <remarks/>
-        ON_THURSDAY,
-
-        /// <remarks/>
-        ON_FRIDAY,
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.example.org/Holiday")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.example.org/Holiday", IsNullable = false)]
-    public enum With
-    {
-
-        /// <remarks/>
-        NEXT,
-
-        /// <remarks/>
-        PREVIOUS,
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.example.org/Holiday")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.example.org/Holiday", IsNullable = false)]
     public enum Weekday
     {
 
@@ -544,6 +498,20 @@ namespace Bouduin.Lib.Holidays.Configurations
 
         /// <remarks/>
         SUNDAY,
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.example.org/Holiday")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.example.org/Holiday", IsNullable = false)]
+    public enum With
+    {
+
+        /// <remarks/>
+        NEXT,
+
+        /// <remarks/>
+        PREVIOUS,
     }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RelativeToEasterSunday))]
@@ -1440,5 +1408,37 @@ namespace Bouduin.Lib.Holidays.Configurations
 
         /// <remarks/>
         WHIT_SUNDAY,
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.example.org/Holiday")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.example.org/Holiday", IsNullable = false)]
+    public enum Substituted
+    {
+
+        /// <remarks/>
+        ON_SATURDAY,
+
+        /// <remarks/>
+        ON_SUNDAY,
+
+        /// <remarks/>
+        ON_WEEKEND,
+
+        /// <remarks/>
+        ON_MONDAY,
+
+        /// <remarks/>
+        ON_TUESDAY,
+
+        /// <remarks/>
+        ON_WEDNESDAY,
+
+        /// <remarks/>
+        ON_THURSDAY,
+
+        /// <remarks/>
+        ON_FRIDAY,
     }
 }

@@ -8,5 +8,6 @@ namespace Bouduin.Lib.Holidays.Interface
         string Path { get; }
         string Hierarchy { get; }
         string Description { get; }
+        // TODO string LocalizedHolidayType { get; }
     }
 }

@@ -20,7 +20,55 @@ namespace Bouduin.Lib.Holidays.Services
         /// <param name="fixedHoliday"></param>
         /// <param name="year"></param>
         /// <returns>the Date (Local time) if the holiday occurs in the given year</returns>
-        DateTime? GetFixedHolidyDay(Fixed fixedHoliday, int year);
+        DateTime? GetFixedHolidyday(Fixed fixedHoliday, int year);
+
+        /// <summary>
+        /// Get a fixed weekday between to fixed days
+        /// </summary>
+        /// <param name="fixedWeekdayBetweenFixed"></param>
+        /// <param name="year"></param>
+        /// <returns>the Date (Local time) if the holiday occurs in the given year</returns>
+        DateTime? GetFixedWeekdayBetweenFixedHoliday(FixedWeekdayBetweenFixed fixedWeekdayBetweenFixed, int year);
+
+        /// <summary>
+        /// Get a Holiday on a fixed weekday in a mont
+        /// </summary>
+        /// <param name="fixedWeekdayInMonth"></param>
+        /// <param name="year"></param>
+        /// <returns>the Date (Local time) if the holiday occurs in the given year</returns>
+        DateTime? GetFixedWeekdayInMonthHoliday(FixedWeekdayInMonth fixedWeekdayInMonth, int year);
+
+        /// <summary>
+        /// Get a fixed Holiday relative to another fixed day
+        /// </summary>
+        /// <param name="fixedWeekdayRelativeToFixed"></param>
+        /// <param name="year"></param>
+        /// <returns>the Date (Local time) if the holiday occurs in the given year</returns>
+        DateTime? GetFixedWeekdayRelativeToFixedHoliday(FixedWeekdayRelativeToFixed fixedWeekdayRelativeToFixed, int year);
+
+        /// <summary>
+        /// Get a (non Christian) holiday relative to easter Sunday
+        /// </summary>
+        /// <param name="relativeToEasterSunday"></param>
+        /// <param name="year"></param>
+        /// <returns>the Date (Local time) if the holiday occurs in the given year</returns>
+        DateTime? GetRelativeToEasterSundayHoliday(RelativeToEasterSunday relativeToEasterSunday, int year);
+
+        /// <summary>
+        /// Get a holiday relative to a fixed day
+        /// </summary>
+        /// <param name="relativeToFixed"></param>
+        /// <param name="year"></param>
+        /// <returns>the Date (Local time) if the holiday occurs in the given year</returns>
+        DateTime? GetRelativeToFixedHoliday(RelativeToFixed relativeToFixed, int year);
+
+        /// <summary>
+        /// Get a holiday relative to a fixed weekday in a month
+        /// </summary>
+        /// <param name="relativeToWeekdayInMonth"></param>
+        /// <param name="year">the Date (Local time) if the holiday occurs in the given year</param>
+        /// <returns></returns>
+        DateTime? GetRelativeToWeekdayInMonthHoliday(RelativeToWeekdayInMonth relativeToWeekdayInMonth, int year);
 
         /// <summary>
         /// Get eastern sunday for the given year
@@ -30,7 +78,12 @@ namespace Bouduin.Lib.Holidays.Services
         /// <returns></returns>
         DateTime GetEasternSunday(ChronologyType chronology, int year);
 
-
+        /// <summary>
+        /// Move a date according to its moving definitions
+        /// </summary>
+        /// <param name="moveableHoliday"></param>
+        /// <param name="calculatedDateTime"></param>
+        /// <returns></returns>
         DateTime MoveDate(MoveableHoliday moveableHoliday, DateTime calculatedDateTime);
     }
 }

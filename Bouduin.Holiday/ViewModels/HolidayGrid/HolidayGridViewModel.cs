@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
+﻿using System.Linq;
 using Bouduin.Lib.Holidays;
 using Bouduin.Lib.Holidays.Extensions;
 using Bouduin.Lib.Holidays.Interface;
 using Bouduin.Lib.Holidays.Locations;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Bouduin.Holiday.ViewModels.HolidayGrid
 {
@@ -59,12 +56,11 @@ namespace Bouduin.Holiday.ViewModels.HolidayGrid
 
         private void LoadHolidays()
         {
-            var serviceResult = Service.GetHolidayService().GetHolidayDates(CurrentLocation.Path);
+            var serviceResult = Service.GetHolidayService().GetHolidayDates(CurrentLocation.Path, DateTime.Today.Year);
 
             _currentHolidays.Clear();
             serviceResult.OrderBy(ob => ob.Date).ToList().ForEach(_currentHolidays.Add);
-
-
+            
         }
 
         #endregion

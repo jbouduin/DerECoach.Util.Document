@@ -5,6 +5,6 @@ namespace Bouduin.Lib.Holidays.Interface
 
     public interface IHolidayService
     {
-        IEnumerable<IHolidayDate> GetHolidayDates(string hierarchyPath);
+        IEnumerable<IHolidayDate> GetHolidayDates(string hierarchyPath, int year);
     }
 }

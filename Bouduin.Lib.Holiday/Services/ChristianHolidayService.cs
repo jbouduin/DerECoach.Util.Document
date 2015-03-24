@@ -33,39 +33,39 @@ namespace Bouduin.Lib.Holidays.Services
             switch (christianHoliday.type)
             {
                 case ChristianHolidayType.GOOD_FRIDAY:
-                    return easternSunday.AddDays(-2);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(-2));
                 case ChristianHolidayType.EASTER_MONDAY:
-                    return easternSunday.AddDays(1);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(1));
                 case ChristianHolidayType.ASCENSION_DAY:
-                    return easternSunday.AddDays(39);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(39));
                 case ChristianHolidayType.WHIT_MONDAY:
                 case ChristianHolidayType.PENTECOST_MONDAY:
-                    return easternSunday.AddDays(50);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(50));
                 case ChristianHolidayType.CORPUS_CHRISTI:
-                    return easternSunday.AddDays(60);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(60));
                 case ChristianHolidayType.MAUNDY_THURSDAY:
-                    return easternSunday.AddDays(-3);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(-3));
                 case ChristianHolidayType.ASH_WEDNESDAY:
-                    return easternSunday.AddDays(-46);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(-46));
                 case ChristianHolidayType.GENERAL_PRAYER_DAY:
-                    return easternSunday.AddDays(26);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(26));
                 case ChristianHolidayType.CLEAN_MONDAY:
                 case ChristianHolidayType.SHROVE_MONDAY:
-                    return easternSunday.AddDays(-48);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(-48));
                 case ChristianHolidayType.WHIT_SUNDAY:
                 case ChristianHolidayType.PENTECOST:
-                    return easternSunday.AddDays(49);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(49));
                 case ChristianHolidayType.MARDI_GRAS:
                 case ChristianHolidayType.CARNIVAL:
-                    return easternSunday.AddDays(-47);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(-47));
                 case ChristianHolidayType.EASTER_SATURDAY:
-                    return easternSunday.AddDays(-1);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(-1));
                 case ChristianHolidayType.EASTER_TUESDAY:
-                    return easternSunday.AddDays(2);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(2));
                 case ChristianHolidayType.SACRED_HEART:
-                    return easternSunday.AddDays(68);
+                    return _calendarService.MoveDate(christianHoliday, easternSunday.AddDays(68));
                 case ChristianHolidayType.EASTER:
-                    return easternSunday;
+                    return _calendarService.MoveDate(christianHoliday, easternSunday);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
