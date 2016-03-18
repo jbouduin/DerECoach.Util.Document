@@ -8,7 +8,7 @@ namespace Bouduin.Util.Test.Common
     public class APropertyChangedNotifierTest
     {
         #region fields --------------------------------------------------------
-        private TestClass _testClass;
+        private PropertyChangedNotifierClass _testClass;
         private string _changedPropertyName;
         #endregion
 
@@ -17,10 +17,10 @@ namespace Bouduin.Util.Test.Common
         [SetUp]
         public void SetUp()
         {
-            _testClass = new TestClass();
+            _testClass = new PropertyChangedNotifierClass {Child = new PropertyChangedNotifierClass()};
             _changedPropertyName = null;
             _testClass.PropertyChanged += TestClassPropertyChanged;
-            _testClass.Child = new TestClass();
+
         }
 
         [TearDown]
@@ -93,7 +93,8 @@ namespace Bouduin.Util.Test.Common
         #endregion
     }
 
-    public class TestClass : APropertyChangedNotifier
+    #region test class --------------------------------------------------------
+    public class PropertyChangedNotifierClass : APropertyChangedNotifier
     {
 
         private string _stringValue;
@@ -104,7 +105,7 @@ namespace Bouduin.Util.Test.Common
 
         public int AField;
 
-        public TestClass Child;
+        public PropertyChangedNotifierClass Child;
         
         public int DummyMethod()
         {
@@ -190,11 +191,6 @@ namespace Bouduin.Util.Test.Common
                 OnPropertyChanged(this, t => t.ThisIntValue);
             }
         }
-
-        
-        
-
-
-
     }
+    #endregion
 }

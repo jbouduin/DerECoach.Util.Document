@@ -14,6 +14,10 @@ namespace Bouduin.Util.Common.Primitives
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #endregion
+
+        #region Property changed methods --------------------------------------
+
         /// <summary>
         /// the method triggering the PropertyChangedEventhandler indirectly
         /// </summary>
@@ -31,7 +35,7 @@ namespace Bouduin.Util.Common.Primitives
         /// <param name="selectorExpression">An expression used to extract the name of the property
         /// e.g. () => Name</param>
         protected virtual void OnPropertyChanged<TSender, TProperty>(
-            TSender sender, 
+            TSender sender,
             Expression<Func<TSender, TProperty>> selectorExpression)
         {
             PropertyChanged.FirePropertyChanged(sender, selectorExpression);

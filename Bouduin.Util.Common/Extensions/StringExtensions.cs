@@ -142,6 +142,13 @@ namespace Bouduin.Util.Common.Extensions
             return value == null ? other == null : value.Equals(other, stringComparison);
             // ReSharper restore CompareNonConstrainedGenericWithNull
         }
+
+        public static bool EqualsEmptyEqualsNull(this string value, string other, StringComparison stringComparison)
+        {
+            return string.IsNullOrEmpty(value)
+                ? string.IsNullOrEmpty(other)
+                : value.Equals(other, stringComparison);
+        }
         #endregion
     }
 }

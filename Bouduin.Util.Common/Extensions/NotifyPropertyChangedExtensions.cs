@@ -26,6 +26,14 @@ namespace Bouduin.Util.Common.Extensions
         #endregion
 
         #region PropertyChangedEventHandler -----------------------------------
+        /// <summary>
+        /// Fire the property changed event for the property selected by the Expression
+        /// </summary>
+        /// <typeparam name="TSender"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="handler"></param>
+        /// <param name="sender"></param>
+        /// <param name="property"></param>
         public static void FirePropertyChanged<TSender, TProperty>(
             this PropertyChangedEventHandler handler,
             TSender sender,
@@ -38,6 +46,13 @@ namespace Bouduin.Util.Common.Extensions
             DoFirePropertyChanged(handler, sender, property);
         }
 
+        /// <summary>
+        /// Fire the property changed event for the property selected by the Expression
+        /// </summary>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="handler"></param>
+        /// <param name="sender"></param>
+        /// <param name="property"></param>
         public static void FirePropertyChanged<TProperty>(
             this PropertyChangedEventHandler handler,
             object sender,

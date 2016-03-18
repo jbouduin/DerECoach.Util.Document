@@ -8,9 +8,24 @@ namespace Bouduin.Util.Common.Primitives
 {
     public class APropertyChangedNotifierWithTracking : APropertyChangedNotifier
     {
-        #region change management -------------------------------------------------
-        private readonly Dictionary<string, object> _dictionaryOfChanges = new Dictionary<string, object>();
 
+        #region fields --------------------------------------------------------
+        private readonly Dictionary<string, object> _dictionaryOfChanges = new Dictionary<string, object>();
+        #endregion
+
+        #region properties ----------------------------------------------------
+        public virtual bool HasChanges
+        {
+            get { return _dictionaryOfChanges.Any(); }
+        }
+
+        public IEnumerable<string> ChangedPropertyNames
+        {
+            get { return _dictionaryOfChanges.Keys; }
+        }
+        #endregion
+
+        #region Property changed methods --------------------------------------
         /// <summary>
         /// the method triggering the PropertyChangedEventhandler indirectly and tracking value changes
         /// </summary>
@@ -23,53 +38,156 @@ namespace Bouduin.Util.Common.Primitives
             TValue oldValue,
             TValue newValue)
         {
+            
+            var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
+            var call = selectorExpression.ThrowOnNull(lambda.Body as MemberExpression);
+            
+            selectorExpression.CheckIsProperty(call);
+            HandleChangeTracking(call.Member.Name, oldValue, newValue);
+            
+            OnPropertyChanged(selectorExpression);
+            OnPropertyChanged(() => HasChanges);
+        }
+
+        /// <summary>
+        /// the method triggering the PropertyChangedEventhandler indirectly and tracking value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="selectorExpression">An expression used to extract the name of the property
+        /// e.g. () => Name</param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        protected virtual void OnPropertyChanged<TValue, TSender, TProperty>(
+            TSender sender,
+            Expression<Func<TSender, TProperty>> selectorExpression,
+            TValue oldValue,
+            TValue newValue)
+        {
+
+            var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
+            var call = selectorExpression.ThrowOnNull(lambda.Body as MemberExpression);
+
+            selectorExpression.CheckIsProperty(call);
+            HandleChangeTracking(call.Member.Name, oldValue, newValue);
+
+            OnPropertyChanged(sender, selectorExpression);
+            OnPropertyChanged(() => HasChanges);
+        }
+
+        /// <summary>
+        /// the method triggering the PropertyChangedEventhandler indirectly and tracking value changes
+        /// </summary>
+        /// <param name="selectorExpression">An expression used to extract the name of the property
+        /// e.g. () => Name</param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="nullEqualsEmpty"></param>
+        /// <param name="stringComparison"></param>
+        protected virtual void OnStringPropertyChanged<TProperty>(
+            Expression<Func<TProperty>> selectorExpression,
+            string oldValue,
+            string newValue,
+            bool nullEqualsEmpty = true,
+                StringComparison stringComparison = StringComparison.InvariantCulture)
+        {
 
             var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
             var call = selectorExpression.ThrowOnNull(lambda.Body as MemberExpression);
             selectorExpression.CheckIsProperty(call);
 
-            if (Equals(oldValue, newValue))
-                return;
-
-            if (!_dictionaryOfChanges.ContainsKey(call.Member.Name))
-            {
-                _dictionaryOfChanges.Add(call.Member.Name, oldValue);
-            }
-            else
-            {
-                if (call.Type == typeof (string))
-                {
-                    var originalStringValue = _dictionaryOfChanges[call.Member.Name] == null
-                        ? string.Empty
-                        : _dictionaryOfChanges[call.Member.Name].ToString();
-
-                    var newStringValue = newValue == null ? string.Empty : newValue.ToString();
-
-                    if (originalStringValue.Equals(newStringValue))
-                    {
-                        _dictionaryOfChanges.Remove(call.Member.Name);
-                    }
-                }
-                else
-                {
-                    if (_dictionaryOfChanges[call.Member.Name].EqualsConsideringNull(newValue))
-                    {
-                        _dictionaryOfChanges.Remove(call.Member.Name);
-                    }
-                }
-            }
+            HandleStringChangeTracking(call.Member.Name, nullEqualsEmpty, oldValue, newValue, stringComparison);
+            
             OnPropertyChanged(selectorExpression);
             OnPropertyChanged(() => HasChanges);
         }
 
+        /// <summary>
+        /// the method triggering the PropertyChangedEventhandler indirectly and tracking value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="selectorExpression">An expression used to extract the name of the property
+        /// e.g. () => Name</param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="nullEqualsEmpty"></param>
+        /// <param name="stringComparison"></param>
+        protected virtual void OnStringPropertyChanged<TSender, TProperty>(
+            TSender sender,
+            Expression<Func<TSender, TProperty>> selectorExpression,
+            string oldValue,
+            string newValue,
+            bool nullEqualsEmpty = true,
+                StringComparison stringComparison = StringComparison.InvariantCulture)
+        {
+
+            var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
+            var call = selectorExpression.ThrowOnNull(lambda.Body as MemberExpression);
+            selectorExpression.CheckIsProperty(call);
+
+            HandleStringChangeTracking(call.Member.Name, nullEqualsEmpty, oldValue, newValue, stringComparison);
+
+            OnPropertyChanged(sender, selectorExpression);
+            OnPropertyChanged(() => HasChanges);
+        }
+        #endregion
+
+        #region other public methods ------------------------------------------
         public virtual void ClearChangeFlag()
         {
             _dictionaryOfChanges.Clear();
         }
+        #endregion
 
-        public virtual bool HasChanges
+        #region helper methods ------------------------------------------------
+
+        private void HandleChangeTracking<TValue>(string propertyName, TValue oldValue, TValue newValue)
         {
-            get { return _dictionaryOfChanges.Any(); }
+            if (!oldValue.EqualsConsideringNull(newValue))
+            {
+
+                if (!_dictionaryOfChanges.ContainsKey(propertyName))
+                {
+                    _dictionaryOfChanges.Add(propertyName, oldValue);
+                }
+                else
+                {
+                    if (_dictionaryOfChanges[propertyName].EqualsConsideringNull(newValue))
+                    {
+                        _dictionaryOfChanges.Remove(propertyName);
+                    }
+                }
+            }
+        }
+
+        private void HandleStringChangeTracking(
+            string propertyName,
+            bool nullEqualsEmpty,
+            string oldValue, 
+            string newValue, 
+            StringComparison stringComparison)
+        {
+            var valueChange = nullEqualsEmpty
+                ? !oldValue.EqualsEmptyEqualsNull(newValue, stringComparison)
+                : oldValue.EqualsConsideringNull(newValue, stringComparison);
+            if (valueChange)
+            {
+                if (!_dictionaryOfChanges.ContainsKey(propertyName))
+                {
+                    _dictionaryOfChanges.Add(propertyName, oldValue);
+                }
+                else
+                {
+                    var backToOriginal = nullEqualsEmpty
+                        ? newValue.EqualsEmptyEqualsNull(_dictionaryOfChanges[propertyName] as string,
+                            stringComparison)
+                        : newValue.EqualsConsideringNull(_dictionaryOfChanges[propertyName] as string,
+                            stringComparison);
+                    if (backToOriginal)
+                    {
+                        _dictionaryOfChanges.Remove(propertyName);
+                    }
+                }
+            }
         }
         #endregion
     }

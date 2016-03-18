@@ -5,6 +5,12 @@ using System.Runtime.Serialization;
 
 namespace Bouduin.Util.Common.Results
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TReason">The type of Reason that will be used</typeparam>
+    /// <typeparam name="TContext">The type of Context that will be used</typeparam>
+    /// <typeparam name="TValue">The actual function result to be returned from the function</typeparam>
     public class Result<TReason, TContext, TValue> : Result<TReason, TContext>
     {
         #region datamember properties -----------------------------------------

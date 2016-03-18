@@ -25,7 +25,7 @@ namespace Bouduin.Util.Common.Extensions
         }
 
         /// <summary>
-        /// Executes the provided function if the class is not null.
+        /// Returns the result of the provided function if the class is not null.
         /// If the class is null, the default value of TResult is returned
         /// </summary>
         public static TResult IfNotNull<TObject, TResult>(this TObject value, Func<TObject, TResult> function)
@@ -35,7 +35,7 @@ namespace Bouduin.Util.Common.Extensions
         }
 
         /// <summary>
-        /// Executes the provided function if the class is not null.
+        /// Returns the result of the provided function if the class is not null.
         /// If the class is null, the passed default value returned
         /// </summary>
         public static TResult IfNotNull<TObject, TResult>(this TObject value, Func<TObject, TResult> function,
@@ -45,8 +45,8 @@ namespace Bouduin.Util.Common.Extensions
         }
 
         /// <summary>
-        /// Executes the provided notNullFunction if the class is not null.
-        /// If the class is null, the nullFunction is executed
+        /// Returns the result of the provided notNullFunction if the class is not null.
+        /// If the class is null, the result of nullFunction is returned
         /// </summary>
         public static TResult IfNotNull<TObject, TResult>(this TObject value, Func<TObject, TResult> notNullFunction,
             Func<TResult> nullFunction) where TObject : class
