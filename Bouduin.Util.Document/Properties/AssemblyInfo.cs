@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Rtf Library")]
-[assembly: AssemblyDescription("Rich Text Format file construction library")]
+[assembly: AssemblyDescription("Document generation Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Energoservis")]
-[assembly: AssemblyProduct("Rtf Library")]
-[assembly: AssemblyCopyright("© 2009 Dmitry Popov")]
+[assembly: AssemblyCompany("Johan Bouduin")]
+[assembly: AssemblyProduct("Utility Libraries by Johan Bouduin")]
+[assembly: AssemblyCopyright("Copyright © Johan Bouduin 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

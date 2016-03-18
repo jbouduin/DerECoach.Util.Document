@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Bouduin.Util.Holiday")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Library to calculate international holidays")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ventum Consulting GmbH & Co. KG")]
-[assembly: AssemblyProduct("Bouduin.Util.Holiday")]
-[assembly: AssemblyCopyright("Copyright © Ventum Consulting GmbH & Co. KG 2015")]
+[assembly: AssemblyCompany("Johan Bouduin")]
+[assembly: AssemblyProduct("Utility Libraries by Johan Bouduin")]
+[assembly: AssemblyCopyright("Copyright © Johan Bouduin 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

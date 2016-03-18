@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Bouduin.Util.Common")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Common Library with usefull classes")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ventum Consulting GmbH & Co. KG")]
-[assembly: AssemblyProduct("Bouduin.Util.Common")]
-[assembly: AssemblyCopyright("Copyright © Ventum Consulting GmbH & Co. KG 2016")]
+[assembly: AssemblyCompany("Johan Bouduin")]
+[assembly: AssemblyProduct("Utility Libraries by Johan Bouduin")]
+[assembly: AssemblyCopyright("Copyright © Johan Bouduin 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
