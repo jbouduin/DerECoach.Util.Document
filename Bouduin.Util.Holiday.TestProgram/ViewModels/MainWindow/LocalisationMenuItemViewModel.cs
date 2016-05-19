@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using Bouduin.Util.Holiday.Extensions;
+using Bouduin.Util.Holiday.TestProgram.Extensions;
 using Bouduin.Util.Holiday.TestProgram.ViewModels.LocationTree;
 
 namespace Bouduin.Util.Holiday.TestProgram.ViewModels.MainWindow

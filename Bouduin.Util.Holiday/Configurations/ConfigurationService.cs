@@ -16,7 +16,7 @@ namespace Bouduin.Util.Holiday.Configurations
     }
 
     /// <summary>
-    /// The location provider
+    /// The configuration provider
     /// </summary>
     internal class ConfigurationService: IConfigurationService
     {

@@ -13,40 +13,7 @@ namespace Bouduin.Util.Holiday.Services
                    (holiday.validTo >= year || holiday.validTo == 0) && IsValidForCyle(holiday, year);
             return result;
         }
-
-        public bool IsValidForCyle(Configurations.Holiday holiday, int year)
-        {
-            int cycleYears;
-            switch (holiday.every)
-            {
-                case HolidayCycleType.EVERY_YEAR:
-                    return true;
-                case HolidayCycleType.Item2_YEARS:
-                    cycleYears = 2;
-                    break;
-                case HolidayCycleType.Item4_YEARS:
-                    cycleYears = 4;
-                    break;
-                case HolidayCycleType.Item5_YEARS:
-                    cycleYears = 5;
-                    break;
-                case HolidayCycleType.Item6_YEARS:
-                    cycleYears = 6;
-                    break;
-                case HolidayCycleType.ODD_YEARS:
-                    return year%2 != 0;
-                case HolidayCycleType.EVEN_YEARS:
-                    return year%2 == 0;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            if (holiday.validFrom == 0)
-                return true;
-
-            return (year - holiday.validFrom)%cycleYears == 0;
-        }
-
+        
         public DateTime? GetFixedHolidyday(Fixed fixedHoliday, int year)
         {
             if (!IsValid(fixedHoliday, year))
@@ -280,6 +247,38 @@ namespace Bouduin.Util.Holiday.Services
         #endregion
 
         #region helper methods ------------------------------------------------
+        private bool IsValidForCyle(Configurations.Holiday holiday, int year)
+        {
+            int cycleYears;
+            switch (holiday.every)
+            {
+                case HolidayCycleType.EVERY_YEAR:
+                    return true;
+                case HolidayCycleType.Item2_YEARS:
+                    cycleYears = 2;
+                    break;
+                case HolidayCycleType.Item4_YEARS:
+                    cycleYears = 4;
+                    break;
+                case HolidayCycleType.Item5_YEARS:
+                    cycleYears = 5;
+                    break;
+                case HolidayCycleType.Item6_YEARS:
+                    cycleYears = 6;
+                    break;
+                case HolidayCycleType.ODD_YEARS:
+                    return year % 2 != 0;
+                case HolidayCycleType.EVEN_YEARS:
+                    return year % 2 == 0;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            if (holiday.validFrom == 0)
+                return true;
+
+            return (year - holiday.validFrom) % cycleYears == 0;
+        }
 
         private DateTime MoveHoliday(MovingCondition movingCondition, DateTime dateTimeToMove)
         {
@@ -385,7 +384,7 @@ namespace Bouduin.Util.Holiday.Services
 
         }
 
-        public DateTime GetGregorianEasterSunday(int year)
+        private DateTime GetGregorianEasterSunday(int year)
         {
             var a = year%19;
             var b = year/100;

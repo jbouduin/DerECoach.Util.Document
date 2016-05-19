@@ -9,18 +9,31 @@ namespace Bouduin.Util.Holiday
 {
     public class Service
     {
+        #region fields --------------------------------------------------------
+
+        private static readonly ILocalizationService LocalizationService = new LocalizationService();
+
+        private static readonly IConfigurationService ConfigurationService =
+            new ConfigurationService(LocalizationService);
+
+        private static readonly ICalendarService CalendarService = new CalendarService();
+
+        private static readonly IChristianHolidayService ChristianHolidayService =
+            new ChristianHolidayService(CalendarService);
+
+        #endregion
+
         #region factory methods -----------------------------------------------
+
         public static IHolidayService GetHolidayService()
         {
-            return new HolidayService(ConfigurationService, LocalizationService, ChristianHolidayService, CalendarService);
+            return new HolidayService(ConfigurationService, LocalizationService, ChristianHolidayService,
+                CalendarService);
         }
+
         #endregion
 
         #region query methods -------------------------------------------------
-        private static readonly ILocalizationService LocalizationService = new LocalizationService();
-        private static readonly IConfigurationService ConfigurationService = new ConfigurationService(LocalizationService);
-        private static readonly ICalendarService CalendarService = new CalendarService();
-        private static readonly IChristianHolidayService ChristianHolidayService = new ChristianHolidayService(CalendarService);
 
         /// <summary>
         /// Get a collection of Supported Locations, including there sub-locations

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Bouduin.Util.Holiday.Extensions;
 using Bouduin.Util.Holiday.Locations;
+using Bouduin.Util.Holiday.TestProgram.Extensions;
 using Bouduin.Util.Holiday.TestProgram.ViewModels.HolidayGrid;
 
 namespace Bouduin.Util.Holiday.TestProgram.ViewModels.LocationTree

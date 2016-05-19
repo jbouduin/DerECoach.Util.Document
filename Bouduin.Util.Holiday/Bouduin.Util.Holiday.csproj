@@ -46,7 +46,6 @@
     <Compile Include="Configurations\Configuration.cs" />
     <Compile Include="Configurations\Holiday.designer.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
-    <Compile Include="Extensions\NotifyPropertyChangedExtensions.cs" />
     <Compile Include="Interface\HolidayDate.cs" />
     <Compile Include="Interface\IHolidayDate.cs" />
     <Compile Include="Services\CalendarService.cs" />

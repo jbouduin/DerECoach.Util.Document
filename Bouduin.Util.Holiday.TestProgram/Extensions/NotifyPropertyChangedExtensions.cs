@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 
-namespace Bouduin.Util.Holiday.Extensions
+namespace Bouduin.Util.Holiday.TestProgram.Extensions
 {
+    // TODO use Bouduin.Util.Common
     public static class NotifyPropertyChangedExtensions
     {
         public static void TriggerNotification<T>(this INotifyPropertyChanged notifyPropertyChanged,

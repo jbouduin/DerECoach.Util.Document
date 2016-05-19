@@ -6,6 +6,7 @@ using System.Linq;
 using Bouduin.Util.Holiday.Extensions;
 using Bouduin.Util.Holiday.Interface;
 using Bouduin.Util.Holiday.Locations;
+using Bouduin.Util.Holiday.TestProgram.Extensions;
 
 namespace Bouduin.Util.Holiday.TestProgram.ViewModels.HolidayGrid
 {

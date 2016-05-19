@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Extensions\MenuItemExtensions.cs" />
+    <Compile Include="Extensions\NotifyPropertyChangedExtensions.cs" />
     <Compile Include="ViewModels\MainWindow\LocalisationMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MainWindow\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\HolidayGrid\HolidayGridViewModel.cs" />
