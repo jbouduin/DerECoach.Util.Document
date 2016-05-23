@@ -58,9 +58,20 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\VersionInfo\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Factory.cs" />
+    <Compile Include="Generic\Attributes\EEnumConversion.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\IFormattedParagraph.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\ITab.cs" />
+    <Compile Include="Generic\Document\ATypeInfo.Generic.cs" />
+    <Compile Include="Generic\Document\IDocumentContent.cs" />
+    <Compile Include="Generic\Document\AAttributeInfo.cs" />
+    <Compile Include="Generic\Document\ADocumentInfo.cs" />
+    <Compile Include="Generic\Document\ATypeInfo.Base.cs" />
     <Compile Include="Primitives\EMetricUnit.cs" />
-    <Compile Include="Primitives\Extensions.cs" />
-    <Compile Include="Rtf\Attributes\ARtfNamedAttribute.cs" />
+    <Compile Include="Generic\Attributes\ANamedAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfControlGroupAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfControlWordAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfControlWordDenotingEndAttribute.cs" />
@@ -69,49 +80,61 @@
     <Compile Include="Rtf\Attributes\RtfIgnoreAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfIncludeAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfIndexAttribute.cs" />
+    <Compile Include="Rtf\Attributes\RtfSortIndexAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfTextDataAttribute.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\RtfTabCollection.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\RtfParagraphCollection.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\ARtfParagraph.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\RtfParagraphContentsCollection.cs" />
-    <Compile Include="Rtf\Contents\RtfImage.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\RtfFormattedParagraph.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\RtfParagraph.cs" />
-    <Compile Include="Rtf\Contents\RtfSpecialCharacter.cs" />
-    <Compile Include="Rtf\Contents\Table\Collections\RtfTableCellCollection.cs" />
-    <Compile Include="Rtf\Contents\Table\Collections\RtfTableCellDefinitionCollection.cs" />
-    <Compile Include="Rtf\Contents\Table\Collections\RtfTableColumnCollection.cs" />
-    <Compile Include="Rtf\Contents\Table\Collections\RtfTableRowCollection.cs" />
-    <Compile Include="Rtf\Contents\Table\RtfTable.cs" />
-    <Compile Include="Rtf\Contents\Table\RtfTableCell.cs" />
-    <Compile Include="Rtf\Contents\Table\RtfTableCellDefinition.cs" />
-    <Compile Include="Rtf\Contents\Table\RtfTableCellStyle.cs" />
-    <Compile Include="Rtf\Contents\Table\RtfTableColumn.cs" />
-    <Compile Include="Rtf\Contents\Table\RtfTableRow.cs" />
-    <Compile Include="Rtf\Contents\Text\RtfHyperlink.cs" />
-    <Compile Include="Rtf\Contents\Text\RtfTextBase.cs" />
-    <Compile Include="Rtf\Contents\Text\RtfFormattedText.cs" />
-    <Compile Include="Rtf\Contents\Text\RtfText.cs" />
+    <Compile Include="Generic\Contents\Image\EImageFormat.cs" />
+    <Compile Include="Generic\Contents\Image\IDocumentImage.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\AParagraph.cs" />
+    <Compile Include="Generic\Contents\Image\DocumentImage.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\ETabKind.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\ETabLead.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\IParagraph.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\FormattedParagraph.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\Paragraph.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\ILineBreak.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\INonbreakingSpace.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\IOptionalHyphen.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\IPageBreak.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\ITabCharacter.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\LineBreak.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\NonBreakingSpace.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\OptionalHyphen.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\PageBreak.cs" />
+    <Compile Include="Generic\Contents\SpecialCharacters\TabCharacter.cs" />
+    <Compile Include="Generic\Contents\Text\Hyperlink.cs" />
+    <Compile Include="Generic\Contents\Text\AText.cs" />
+    <Compile Include="Generic\Contents\Text\ECharacterFormatting.cs" />
+    <Compile Include="Generic\Contents\Text\IHyperlink.cs" />
+    <Compile Include="Generic\Contents\Text\IText.cs" />
+    <Compile Include="Generic\Contents\Text\IFormattedText.cs" />
+    <Compile Include="Generic\Contents\Text\IPlainText.cs" />
+    <Compile Include="Generic\Contents\Text\FormattedText.cs" />
+    <Compile Include="Generic\Contents\Text\PlainText.cs" />
     <Compile Include="Primitives\ECodePage.cs" />
-    <Compile Include="Rtf\Document\ERtfDocumentCharacterSet.cs" />
-    <Compile Include="Rtf\Document\ERtfLanguage.cs" />
+    <Compile Include="Generic\Document\EDocumentCharacterSet.cs" />
+    <Compile Include="Generic\Document\ELanguage.cs" />
+    <Compile Include="Generic\Document\IDocument.cs" />
     <Compile Include="Rtf\Document\RtfTypeInfo.cs" />
     <Compile Include="Rtf\Document\RtfDocumentInfo.cs" />
     <Compile Include="Rtf\Document\RtfAttributeInfo.cs" />
-    <Compile Include="Rtf\Contents\Paragraphs\RtfTab.cs" />
-    <Compile Include="Rtf\Formatting\RtfBorder.cs" />
-    <Compile Include="Rtf\Formatting\RtfParagraphFormatting.cs" />
-    <Compile Include="Rtf\Formatting\RtfTableCellBorders.cs" />
-    <Compile Include="Rtf\Formatting\RtfTablePadding.cs" />
-    <Compile Include="Rtf\Header\RtfFontCollection.cs" />
-    <Compile Include="Rtf\Header\RtfColor.cs" />
-    <Compile Include="Rtf\Header\RtfFont.cs" />
-    <Compile Include="Rtf\Header\RtfColorCollection.cs" />
-    <Compile Include="Rtf\Document\ARtfDocumentContent.cs" />
-    <Compile Include="Rtf\Contents\Text\RtfParagraphContentBase.cs" />
-    <Compile Include="Rtf\Document\RtfDocument.cs" />
-    <Compile Include="Rtf\Document\RtfDocumentContentCollection.cs" />
-    <Compile Include="Rtf\Document\RtfWriter.cs" />
+    <Compile Include="Generic\Contents\Paragraphs\Tab.cs" />
+    <Compile Include="Generic\Formatting\EBorderStyle.cs" />
+    <Compile Include="Generic\Formatting\Border.cs" />
+    <Compile Include="Generic\Formatting\EPaddingUnits.cs" />
+    <Compile Include="Generic\Formatting\ETextAlign.cs" />
+    <Compile Include="Generic\Formatting\IParagraphFormatting.cs" />
+    <Compile Include="Generic\Formatting\ParagraphFormatting.cs" />
+    <Compile Include="Generic\Formatting\TableCellBorders.cs" />
+    <Compile Include="Generic\Formatting\TablePadding.cs" />
+    <Compile Include="Generic\Header\ECharacterSet.cs" />
+    <Compile Include="Generic\Header\EFontFamily.cs" />
+    <Compile Include="Generic\Header\EFontPitch.cs" />
+    <Compile Include="Generic\Header\DocumentColor.cs" />
+    <Compile Include="Generic\Header\DocumentFont.cs" />
+    <Compile Include="Generic\Document\ADocumentContent.cs" />
+    <Compile Include="Generic\Contents\Text\ParagraphContent.cs" />
+    <Compile Include="Generic\Document\Document.cs" />
+    <Compile Include="Rtf\RtfWriter.cs" />
     <Compile Include="Common\TwipConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,6 +150,13 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bouduin.Util.Common\Bouduin.Util.Common.csproj">
+      <Project>{c95650e4-3086-48e2-8227-6caadfe7d327}</Project>
+      <Name>Bouduin.Util.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

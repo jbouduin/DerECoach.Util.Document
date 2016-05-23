@@ -6,8 +6,12 @@ namespace Bouduin.Util.Common.Extensions
     {
         public static Exception GetMostInnerException(this Exception exception)
         {
-            var innerException = exception.InnerException;
-            return innerException == null ? exception : innerException.GetMostInnerException();
+            while (true)
+            {
+                var innerException = exception.InnerException;
+                if (innerException == null) return exception;
+                exception = innerException;
+            }
         }
     }
 }

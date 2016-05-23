@@ -1,4 +1,5 @@
 ﻿using System;
+using Bouduin.Util.Document.Generic.Attributes;
 
 namespace Bouduin.Util.Document.Rtf.Attributes
 {
@@ -6,7 +7,7 @@ namespace Bouduin.Util.Document.Rtf.Attributes
     /// Specifies control word.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Field)]
-    internal class RtfControlWordAttribute : ARtfNamedAttribute
+    internal class RtfControlWordAttribute : ANamedAttribute
     {
         #region properties ----------------------------------------------------
         /// <summary>

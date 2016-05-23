@@ -1,9 +1,8 @@
 ﻿using System;
+using Bouduin.Util.Document.Generic.Attributes;
 
 namespace Bouduin.Util.Document.Rtf.Attributes
 {
-    internal enum RtfEnumConversion { UseName, UseValue, UseAttribute }
-
     /// <summary>
     /// Specifies a way to convert an enum to a control word.
     /// </summary>
@@ -14,7 +13,7 @@ namespace Bouduin.Util.Document.Rtf.Attributes
         /// <summary>
         /// Gets conversion type.
         /// </summary>
-        internal RtfEnumConversion Conversion { get; private set; }
+        internal EEnumConversion Conversion { get; private set; }
         
         /// <summary>
         /// Gets or sets a String value used as a prefix when converting an enum to control word.
@@ -24,7 +23,7 @@ namespace Bouduin.Util.Document.Rtf.Attributes
 
 
         #region constructor ---------------------------------------------------
-        internal RtfEnumAsControlWordAttribute(RtfEnumConversion conversion)
+        internal RtfEnumAsControlWordAttribute(EEnumConversion conversion)
         {
             Conversion = conversion;
             Prefix = string.Empty;

@@ -10,6 +10,7 @@ namespace Bouduin.Util.Common.Results
     /// </summary>
     /// <typeparam name="TReason">The type of Reason that will be used</typeparam>
     /// <typeparam name="TContext">The type of Context that will be used</typeparam>
+    [DataContract]
     public class Result<TReason, TContext>
     {
         #region datamember properties -----------------------------------------
@@ -32,7 +33,6 @@ namespace Bouduin.Util.Common.Results
         #endregion
 
         #region properties ----------------------------------------------------
-
         public bool Failed
         {
             get { return !Succeeded; }

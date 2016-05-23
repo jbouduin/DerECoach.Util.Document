@@ -1,4 +1,5 @@
 ﻿using System;
+using Bouduin.Util.Document.Generic.Attributes;
 
 namespace Bouduin.Util.Document.Rtf.Attributes
 {
@@ -6,7 +7,7 @@ namespace Bouduin.Util.Document.Rtf.Attributes
     /// Specifies control group.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Field)]
-    internal class RtfControlGroupAttribute : ARtfNamedAttribute
+    internal class RtfControlGroupAttribute : ANamedAttribute
     {
         #region constructor ---------------------------------------------------
         internal RtfControlGroupAttribute()

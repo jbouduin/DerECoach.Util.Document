@@ -1,35 +1,36 @@
-﻿using System;
+﻿using System.Linq;
 using System.Reflection;
+using Bouduin.Util.Common.Extensions;
+using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Rtf.Attributes;
 
 namespace Bouduin.Util.Document.Rtf.Document
 {
-    internal class RtfTypeInfo
+    internal class RtfTypeInfo: ATypeInfo<RtfAttributeInfo>
     {
-        private readonly Type _type;
-
-        private readonly MemberInfo[] _members;
-
-        internal Type Type
+        /// <summary>
+        /// Sort method for the properties. return 0 if sort is not important
+        /// </summary>
+        /// <param name="memberInfoX"></param>
+        /// <param name="memberInfoY"></param>
+        /// <returns>return less than 0 if x is less than y.
+        /// return 0 if x equals y.
+        /// return greater than 0 if x is greater than y.</returns>
+        protected override int SortMemberInfo(MemberInfo memberInfoX, MemberInfo memberInfoY)
         {
-            get { return _type; }
+            var rtfSortIndexX =
+                memberInfoX.GetCustomAttributes(typeof (RtfSortIndexAttribute), true)
+                    .OfType<RtfSortIndexAttribute>()
+                    .FirstOrDefault()
+                    .IfNotNull(notNull => notNull.SortIndex, 0);
+            var rtfSortIndexY =
+                memberInfoY.GetCustomAttributes(typeof (RtfSortIndexAttribute), true)
+                    .OfType<RtfSortIndexAttribute>()
+                    .FirstOrDefault()
+                    .IfNotNull(notNull => notNull.SortIndex, 0);
+            
+            return rtfSortIndexX - rtfSortIndexY;
         }
-
-        internal MemberInfo[] Members
-        {
-            get { return _members; }
-        }
-
-        internal RtfTypeInfo(Type type)
-        {
-            _type = type;
-            _members = _type.FindMembers(MemberTypes.Field | MemberTypes.Property,
-                BindingFlags.GetField | BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.Public, FilterHasAttributes, null);
-        }
-
-        private bool FilterHasAttributes(MemberInfo m, object filterCriteria)
-        {
-            var info = RtfDocumentInfo.GetAttributeInfo(m);
-            return info.HasAttributes;
-        }
+        
     }
 }

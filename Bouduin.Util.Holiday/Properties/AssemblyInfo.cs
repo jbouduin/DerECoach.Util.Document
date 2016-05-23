@@ -7,9 +7,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Bouduin.Util.Holiday")]
 [assembly: AssemblyDescription("Library to calculate international holidays")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Johan Bouduin")]
-[assembly: AssemblyProduct("Utility Libraries by Johan Bouduin")]
-[assembly: AssemblyCopyright("Copyright © Johan Bouduin 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,15 +18,3 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("91674143-de90-4a19-9998-5483f1715dfc")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]

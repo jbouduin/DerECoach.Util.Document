@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\VersionInfo\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Configurations\Configuration.cs" />
     <Compile Include="Configurations\Holiday.designer.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />

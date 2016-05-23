@@ -1,4 +1,5 @@
-﻿using Bouduin.Util.Document.Rtf.Attributes;
+﻿using Bouduin.Util.Document.Generic.Attributes;
+using Bouduin.Util.Document.Rtf.Attributes;
 
 // ReSharper disable InconsistentNaming
 
@@ -7,7 +8,7 @@ namespace Bouduin.Util.Document.Primitives
     /// <summary>
     /// Specifies codepage.
     /// </summary>
-    [RtfEnumAsControlWord(RtfEnumConversion.UseValue, Prefix = "ansicpg")]
+    [RtfEnumAsControlWord(EEnumConversion.UseValue, Prefix = "ansicpg")]
     public enum ECodePage
     {
         IBM = 437,

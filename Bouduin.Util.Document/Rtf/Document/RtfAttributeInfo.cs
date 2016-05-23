@@ -1,132 +1,59 @@
-﻿using System;
-using System.Reflection;
+﻿using Bouduin.Util.Document.Generic.Document;
 using Bouduin.Util.Document.Rtf.Attributes;
 
 namespace Bouduin.Util.Document.Rtf.Document
 {
-    internal class RtfAttributeInfo
+    
+    internal class RtfAttributeInfo: AAttributeInfo
     {
-        private readonly MemberInfo _memberInfo;
+        #region properties ----------------------------------------------------
+        public RtfControlWordAttribute RtfControlWordAttribute
+        {
+            get { return GetAttribute<RtfControlWordAttribute>(); }
+        }
 
-        private readonly RtfControlWordAttribute controlWordAttribute;
-        private readonly RtfControlGroupAttribute controlGroupAttribute;
+        public RtfControlGroupAttribute RtfControlGroupAttribute
+        {
+            get { return GetAttribute<RtfControlGroupAttribute>(); }
+        }
 
-        private readonly RtfControlWordDenotingEndAttribute controlWordDenotingEndAttribute;
-        private readonly RtfEnclosingBracesAttribute enclosingBracesAttribute;
+        public RtfControlWordDenotingEndAttribute RtfControlWordDenotingEndAttribute
+        {
+            get { return GetAttribute<RtfControlWordDenotingEndAttribute>(); }
+        }
 
-        private readonly RtfIgnoreAttribute ignoreAttribute;
-        private readonly RtfIncludeAttribute includeAttribute;
+        public RtfEnclosingBracesAttribute EnclosingBracesAttribute
+        {
+            get { return GetAttribute<RtfEnclosingBracesAttribute>(); }
+        }
 
-        private readonly RtfIndexAttribute indexAttribute;
-        private readonly RtfEnumAsControlWordAttribute enumAsControlWordAttribute;
+        public RtfIgnoreAttribute IgnoreAttribute
+        {
+            get { return GetAttribute<RtfIgnoreAttribute>(); }
+        }
 
-        private readonly RtfTextDataAttribute textDataAttribute;
+        public RtfIncludeAttribute IncludeAttribute
+        {
+            get { return GetAttribute<RtfIncludeAttribute>(); }
+        }
+
+        public RtfIndexAttribute IndexAttribute
+        {
+            get { return GetAttribute<RtfIndexAttribute>(); }
+        }
+
+        public RtfEnumAsControlWordAttribute EnumAsControlWordAttribute
+        {
+            get { return GetAttribute<RtfEnumAsControlWordAttribute>(); }
+        }
+
+        public RtfTextDataAttribute TextDataAttribute
+        {
+            get { return GetAttribute<RtfTextDataAttribute>(); }
+        }
+        #endregion
+
+       
         
-        private readonly bool hasAttributes;
-
-        internal MemberInfo MemberInfo
-        {
-            get { return _memberInfo; }
-        }
-
-        internal RtfControlWordAttribute ControlWordAttribute
-        {
-            get { return controlWordAttribute; }
-        }
-        internal RtfControlGroupAttribute ControlGroupAttribute
-        {
-            get { return controlGroupAttribute; }
-        }
-
-        internal RtfControlWordDenotingEndAttribute ControlWordDenotingEndAttribute
-        {
-            get { return controlWordDenotingEndAttribute; }
-        }
-        internal RtfEnclosingBracesAttribute EnclosingBracesAttribute
-        {
-            get { return enclosingBracesAttribute; }
-        }
-
-        internal RtfIgnoreAttribute IgnoreAttribute
-        {
-            get { return ignoreAttribute; }
-        }
-        internal RtfIncludeAttribute IncludeAttribute
-        {
-            get { return includeAttribute; }
-        }
-
-        internal RtfIndexAttribute IndexAttribute
-        {
-            get { return indexAttribute; }
-        }
-
-        internal RtfEnumAsControlWordAttribute EnumAsControlWordAttribute
-        {
-            get { return enumAsControlWordAttribute; }
-        }
-
-        internal RtfTextDataAttribute TextDataAttribute
-        {
-            get { return textDataAttribute; }
-        }
-
-        internal bool HasAttributes
-        {
-            get { return hasAttributes; }
-        }
-
-        internal RtfAttributeInfo(MemberInfo memberInfo)
-        {
-            _memberInfo = memberInfo;
-
-            var attributes = MemberInfo.GetCustomAttributes(false);
-
-            hasAttributes = attributes.Length > 0;
-
-            if (!hasAttributes)
-                return;
-
-            controlWordAttribute = GetAttribute(attributes, typeof(RtfControlWordAttribute)) as RtfControlWordAttribute;
-            controlGroupAttribute = GetAttribute(attributes, typeof(RtfControlGroupAttribute)) as RtfControlGroupAttribute;
-
-            controlWordDenotingEndAttribute = GetAttribute(attributes, typeof(RtfControlWordDenotingEndAttribute)) as RtfControlWordDenotingEndAttribute;
-            enclosingBracesAttribute = GetAttribute(attributes, typeof(RtfEnclosingBracesAttribute)) as RtfEnclosingBracesAttribute;
-
-            ignoreAttribute = GetAttribute(attributes, typeof(RtfIgnoreAttribute)) as RtfIgnoreAttribute;
-            includeAttribute = GetAttribute(attributes, typeof(RtfIncludeAttribute)) as RtfIncludeAttribute;
-
-            indexAttribute = GetAttribute(attributes, typeof(RtfIndexAttribute)) as RtfIndexAttribute;
-
-            enumAsControlWordAttribute = GetAttribute(attributes, typeof(RtfEnumAsControlWordAttribute)) as RtfEnumAsControlWordAttribute;
-
-            textDataAttribute = GetAttribute(attributes, typeof(RtfTextDataAttribute)) as RtfTextDataAttribute;
-
-            var neededAttributes = new object[] {
-                    controlWordAttribute,
-                    controlGroupAttribute,
-                    controlWordDenotingEndAttribute,
-                    enclosingBracesAttribute,
-                    ignoreAttribute,
-                    includeAttribute,
-                    indexAttribute,
-                    enumAsControlWordAttribute,
-                    textDataAttribute,
-                };
-
-            hasAttributes = false;
-
-            for (var i = 0; !hasAttributes && i < neededAttributes.Length; i++)
-                hasAttributes |= neededAttributes != null;
-        }
-
-        private object GetAttribute(object[] attributes, Type type)
-        {
-            foreach (var attribute in attributes)
-                if (attribute.GetType() == type)
-                    return attribute;
-
-            return null;
-        }
     }
 }

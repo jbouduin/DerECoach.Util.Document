@@ -73,7 +73,8 @@ namespace Bouduin.Util.Common.Extensions
         /// <returns></returns>
         public static string ToCommaSeparatedString(this IEnumerable<string> enumerable)
         {
-            return string.Join(", ", enumerable.Except(enumerable.Where(string.IsNullOrWhiteSpace)));
+            var asList = enumerable.ToList();
+            return string.Join(", ", asList.Where(string.IsNullOrWhiteSpace));
         }
 
         /// <summary>

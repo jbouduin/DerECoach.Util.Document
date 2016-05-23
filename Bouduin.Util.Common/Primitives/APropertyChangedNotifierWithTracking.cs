@@ -10,10 +10,13 @@ namespace Bouduin.Util.Common.Primitives
     {
 
         #region fields --------------------------------------------------------
+
         private readonly Dictionary<string, object> _dictionaryOfChanges = new Dictionary<string, object>();
+
         #endregion
 
         #region properties ----------------------------------------------------
+
         public virtual bool HasChanges
         {
             get { return _dictionaryOfChanges.Any(); }
@@ -23,9 +26,11 @@ namespace Bouduin.Util.Common.Primitives
         {
             get { return _dictionaryOfChanges.Keys; }
         }
+
         #endregion
 
         #region Property changed methods --------------------------------------
+
         /// <summary>
         /// the method triggering the PropertyChangedEventhandler indirectly and tracking value changes
         /// </summary>
@@ -38,13 +43,13 @@ namespace Bouduin.Util.Common.Primitives
             TValue oldValue,
             TValue newValue)
         {
-            
+
             var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
             var call = selectorExpression.ThrowOnNull(lambda.Body as MemberExpression);
-            
+
             selectorExpression.CheckIsProperty(call);
             HandleChangeTracking(call.Member.Name, oldValue, newValue);
-            
+
             OnPropertyChanged(selectorExpression);
             OnPropertyChanged(() => HasChanges);
         }
@@ -88,7 +93,7 @@ namespace Bouduin.Util.Common.Primitives
             string oldValue,
             string newValue,
             bool nullEqualsEmpty = true,
-                StringComparison stringComparison = StringComparison.InvariantCulture)
+            StringComparison stringComparison = StringComparison.InvariantCulture)
         {
 
             var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
@@ -96,7 +101,7 @@ namespace Bouduin.Util.Common.Primitives
             selectorExpression.CheckIsProperty(call);
 
             HandleStringChangeTracking(call.Member.Name, nullEqualsEmpty, oldValue, newValue, stringComparison);
-            
+
             OnPropertyChanged(selectorExpression);
             OnPropertyChanged(() => HasChanges);
         }
@@ -117,7 +122,7 @@ namespace Bouduin.Util.Common.Primitives
             string oldValue,
             string newValue,
             bool nullEqualsEmpty = true,
-                StringComparison stringComparison = StringComparison.InvariantCulture)
+            StringComparison stringComparison = StringComparison.InvariantCulture)
         {
 
             var lambda = selectorExpression.ThrowOnNull(selectorExpression as LambdaExpression);
@@ -129,13 +134,16 @@ namespace Bouduin.Util.Common.Primitives
             OnPropertyChanged(sender, selectorExpression);
             OnPropertyChanged(() => HasChanges);
         }
+
         #endregion
 
         #region other public methods ------------------------------------------
+
         public virtual void ClearChangeFlag()
         {
             _dictionaryOfChanges.Clear();
         }
+
         #endregion
 
         #region helper methods ------------------------------------------------
@@ -162,8 +170,8 @@ namespace Bouduin.Util.Common.Primitives
         private void HandleStringChangeTracking(
             string propertyName,
             bool nullEqualsEmpty,
-            string oldValue, 
-            string newValue, 
+            string oldValue,
+            string newValue,
             StringComparison stringComparison)
         {
             var valueChange = nullEqualsEmpty
@@ -189,7 +197,8 @@ namespace Bouduin.Util.Common.Primitives
                 }
             }
         }
+
         #endregion
     }
-    
+
 }
