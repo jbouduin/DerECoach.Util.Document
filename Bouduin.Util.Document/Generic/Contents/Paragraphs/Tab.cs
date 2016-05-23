@@ -57,7 +57,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         #region constructor ---------------------------------------------------
 
         /// <summary>
-        /// Creates an instance of ESCommon.Rtf.RtfTab class.
+        /// Creates an instance of ITab.
         /// </summary>
         /// <param name="position">Tab position in twips</param>
         public Tab(int position)
@@ -66,7 +66,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         }
 
         /// <summary>
-        /// Creates an instance of ESCommon.Rtf.RtfTab class.
+        /// Creates an instance of ITab.
         /// </summary>
         /// <param name="position">Tab position in twips</param>
         /// <param name="kind">Tab kind</param>
@@ -77,7 +77,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         }
 
         /// <summary>
-        /// Creates an instance of ESCommon.Rtf.RtfTab class.
+        /// Creates an instance of ITab.
         /// </summary>
         /// <param name="position">Tab position in twips</param>
         /// <param name="lead">Tab lead</param>
@@ -88,7 +88,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         }
 
         /// <summary>
-        /// Creates an instance of ESCommon.Rtf.RtfTab class.
+        /// Creates an instance of ITab.
         /// </summary>
         /// <param name="position">Tab position in twips</param>
         /// <param name="kind">Tab kind</param>

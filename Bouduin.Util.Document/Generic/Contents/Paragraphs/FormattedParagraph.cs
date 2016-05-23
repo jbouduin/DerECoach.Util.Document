@@ -97,7 +97,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         #region base members override -----------------------------------------
         
         /// <summary>
-        /// Returns ESCommon.Rtf.RtfParagraphFormatting of the paragraph.
+        /// Returns IParagraphFormatting of the paragraph.
         /// </summary>
         public override IParagraphFormatting GetFormatting()
         {

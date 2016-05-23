@@ -4,7 +4,7 @@ using Bouduin.Util.Document.Generic.Formatting;
 
 namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
 {
-    public interface IFormattedParagraph : IParagraph
+    public interface IFormattedParagraph : IBaseParagraph
     {
         /// <summary>
         /// Gets or sets a Boolean value indicating that font (character) formatting is reset to default value

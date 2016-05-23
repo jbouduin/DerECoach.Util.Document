@@ -124,14 +124,14 @@ namespace Bouduin.Util.Document.Generic.Formatting
 
         #region constructor ---------------------------------------------------
         /// <summary>
-        /// Initializes a new instance of ESCommon.Rtf.RtfParagraphFormatting class.
+        /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
         public ParagraphFormatting()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of ESCommon.Rtf.RtfParagraphFormatting class.
+        /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
         /// <param name="fontSize">Font size in points.</param>
         public ParagraphFormatting(float fontSize)
@@ -140,7 +140,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         }
 
         /// <summary>
-        /// Initializes a new instance of ESCommon.Rtf.RtfParagraphFormatting class.
+        /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
         /// <param name="align">Text align inside the paragraph.</param>
         public ParagraphFormatting(ETextAlign align)
@@ -149,7 +149,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         }
 
         /// <summary>
-        /// Initializes a new instance of ESCommon.Rtf.RtfParagraphFormatting class.
+        /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
         /// <param name="fontSize">Font size in points.</param>
         /// <param name="align">Text align inside the paragraph.</param>

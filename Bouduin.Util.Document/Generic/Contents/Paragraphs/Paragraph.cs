@@ -11,7 +11,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         [RtfIgnore]
         public IParagraphFormatting InheritedFormatting
         {
-            get { return (Parent as IParagraph).IfNotNull(notNull => notNull.GetFormatting()); }
+            get { return (Parent as IBaseParagraph).IfNotNull(notNull => notNull.GetFormatting()); }
         }
         
         public Paragraph()
@@ -29,7 +29,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         }
 
         /// <summary>
-        /// Returns ESCommon.Rtf.RtfParagraphFormatting of the paragraph.
+        /// Returns IParagraphFormatting of the paragraph.
         /// </summary>
         public override IParagraphFormatting GetFormatting()
         {

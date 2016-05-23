@@ -7,7 +7,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
     /// <summary>
     /// Represents a border.
     /// </summary>
-    internal class Border
+    internal class Border : IBorder
     {
         private int _width = 10;
         private EBorderStyle _style = EBorderStyle.SingleThicknessBorder;
@@ -59,7 +59,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         }
 
         /// <summary>
-        /// Copy all the properties of the current border to specified ESCommon.Rtf.RtfBorder object.
+        /// Copy all the properties of the current border to specified IBorder object.
         /// </summary>
         /// <param name="border">Border object to copy to.</param>
         public void CopyTo(Border border)

@@ -7,7 +7,7 @@ namespace Bouduin.Util.Document.Generic.Header
     /// Represents a font.
     /// </summary>
     [RtfControlWord("f", IsIndexed = true), RtfEnclosingBraces(ClosingSemicolon = true)]
-    internal class DocumentFont
+    internal class DocumentFont : IDocumentFont
     {
         #region fields --------------------------------------------------------
         private readonly EFontFamily _fontFamily = EFontFamily.Default;

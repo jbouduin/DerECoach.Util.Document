@@ -5,11 +5,11 @@ using Bouduin.Util.Document.Generic.Formatting;
 
 namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
 {
-    public interface IParagraph : IDocumentContent
+    public interface IBaseParagraph : IDocumentContent
     {
         bool IsPartOfATable { get; }
         ObservableCollection<IParagraphContent> Contents { get; }
-        ObservableCollection<IParagraph> Paragraphs { get; }
+        ObservableCollection<IBaseParagraph> Paragraphs { get; }
 
         /// <summary>
         /// Add text to paragraph contents
@@ -39,7 +39,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// <summary>
         /// Add a new paragraph with inherited formatting
         /// </summary>
-        void AppendParagraph(IParagraph paragraph);
+        void AppendParagraph(IBaseParagraph paragraph);
 
         IParagraphFormatting GetFormatting();
         void SetDocument(IDocument document);

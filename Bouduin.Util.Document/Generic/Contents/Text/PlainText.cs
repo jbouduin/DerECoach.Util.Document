@@ -18,7 +18,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Text
 
 
         /// <summary>
-        /// Initializes a new instance of ESCommon.Rtf.RtfText class.
+        /// Initializes a new instance of PlainText class.
         /// </summary>
         public PlainText(string text) : base(text)
         {

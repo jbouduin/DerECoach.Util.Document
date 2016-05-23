@@ -28,8 +28,8 @@ namespace Bouduin.Util.Document.Rtf
         /// <summary>
         /// Writes Document to a file.
         /// </summary>
-        /// <param name="writer">The System.IO.TextWriter used to write RTF document.</param>
-        /// <param name="document">The ESCommon.Rtf.Document to write.</param>
+        /// <param name="writer">The System.IO.TextWriter used to write the document.</param>
+        /// <param name="document">The IDocument to write.</param>
         public void Write(TextWriter writer, IDocument document)
         {
             var doc = document as Generic.Document.Document;

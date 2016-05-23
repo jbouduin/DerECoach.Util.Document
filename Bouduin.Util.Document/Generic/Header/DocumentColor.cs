@@ -7,7 +7,7 @@ namespace Bouduin.Util.Document.Generic.Header
     /// Represents a color.
     /// </summary>
     [RtfEnclosingBraces(Braces = false, ClosingSemicolon = true)]
-    internal class DocumentColor
+    internal class DocumentColor : IDocumentColor
     {
         public static readonly DocumentColor Auto = new DocumentColor(-1, -1, -1);
 
@@ -52,7 +52,7 @@ namespace Bouduin.Util.Document.Generic.Header
         }
 
         /// <summary>
-        /// Initializes a new instance of ESCommon.Rtf.RtfColor class.
+        /// Initializes a new instance of DocumentColor class.
         /// </summary>
         public DocumentColor(Color color)
         {

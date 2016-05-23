@@ -8,7 +8,7 @@ using Bouduin.Util.Document.Rtf.Attributes;
 
 namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
 {
-    internal abstract class AParagraph : ADocumentContent, IParagraph, IRootDocumentContent, IChildDocumentContent
+    internal abstract class AParagraph : ADocumentContent, IBaseParagraph, IRootDocumentContent, IChildDocumentContent
     {
         private bool _isPartOfATable;
 
@@ -23,13 +23,13 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         public ObservableCollection<IParagraphContent> Contents { get; private set; }
 
         [RtfSortIndex(110), RtfInclude]
-        public ObservableCollection<IParagraph> Paragraphs { get; private set; }
+        public ObservableCollection<IBaseParagraph> Paragraphs { get; private set; }
 
         protected AParagraph()
         {
             Contents = new ObservableCollection<IParagraphContent>();
             Contents.CollectionChanged += Contents_CollectionChanged;
-            Paragraphs = new ObservableCollection<IParagraph>();
+            Paragraphs = new ObservableCollection<IBaseParagraph>();
             Paragraphs.CollectionChanged +=Paragraphs_CollectionChanged;
         }
 
@@ -37,7 +37,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         {
             if (e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Replace)
             {
-                foreach (var newItem in e.NewItems.OfType<IParagraph>())
+                foreach (var newItem in e.NewItems.OfType<IBaseParagraph>())
                 {
                     newItem.SetParent(this);
                 }
@@ -120,7 +120,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// <summary>
         /// Add a new paragraph with inherited formatting
         /// </summary>
-        public void AppendParagraph(IParagraph paragraph)
+        public void AppendParagraph(IBaseParagraph paragraph)
         {
             Paragraphs.Add(paragraph);
         }

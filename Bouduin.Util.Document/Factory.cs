@@ -3,6 +3,7 @@ using Bouduin.Util.Document.Generic.Contents.Image;
 using Bouduin.Util.Document.Generic.Contents.Paragraphs;
 using Bouduin.Util.Document.Generic.Contents.SpecialCharacters;
 using Bouduin.Util.Document.Generic.Contents.Text;
+using Bouduin.Util.Document.Generic.Contents.Text.Hyperlinks;
 using Bouduin.Util.Document.Generic.Document;
 using Bouduin.Util.Document.Generic.Formatting;
 using Bouduin.Util.Document.Primitives;

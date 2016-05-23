@@ -20,8 +20,8 @@ namespace Bouduin.Util.Document.Generic.Document
         #region fields --------------------------------------------------------
         private EDocumentCharacterSet _charSet = EDocumentCharacterSet.ANSI;
         private ECodePage _codePage = ECodePage.WesternEuropean;
-        private readonly List<DocumentFont> _fontTable = new List<DocumentFont>();
-        private readonly List<DocumentColor> _colorTable = new List<DocumentColor>{DocumentColor.Auto};
+        private readonly List<IDocumentFont> _fontTable = new List<IDocumentFont>();
+        private readonly List<IDocumentColor> _colorTable = new List<IDocumentColor>{DocumentColor.Auto};
         #endregion
 
         #region IRtfDocumentInterface -----------------------------------------
@@ -108,13 +108,13 @@ namespace Bouduin.Util.Document.Generic.Document
 
         #region properties ----------------------------------------------------
         [RtfSortIndex(4), RtfControlGroup("fonttbl"), RtfInclude(ConditionMember = "FontTableIsNotEmpty")]
-        public List<DocumentFont> FontTable
+        public List<IDocumentFont> FontTable
         {
             get { return _fontTable; }
         }
 
         [RtfSortIndex(5), RtfControlGroup("colortbl")]
-        public List<DocumentColor> ColorTable
+        public List<IDocumentColor> ColorTable
         {
             get { return _colorTable; }
         }
