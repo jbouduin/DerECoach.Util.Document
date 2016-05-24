@@ -15,15 +15,13 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
     /// Represents a formatted paragraph.
     /// </summary>
     [RtfControlWord("pard"), RtfControlWordDenotingEnd("par")]
-    internal class FormattedParagraph : AParagraph, IFormattedParagraph
+    internal class FormattedParagraph : AParagraph, IFormattedParagraphInternal
     {
         #region fields --------------------------------------------------------
 
         private ELanguage _language = ELanguage.EnglishUnitedStates;
-        private IParagraphFormatting _formatting;
         private ObservableCollection<ITab> _tabs;
         private bool _isFormattingIncluded = true;
-        private bool _resetFormatting;
         private readonly List<int> _existingTabPositions = new List<int>();
         #endregion
 
@@ -33,21 +31,13 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// Gets or sets a Boolean value indicating that font (character) formatting is reset to default value
         /// </summary>
         [RtfSortIndex(1), RtfControlWord("plain")]
-        public bool ResetFormatting
-        {
-            get { return _resetFormatting; }
-            set { _resetFormatting = value; }
-        }
+        public bool ResetFormatting { get; set; }
 
         /// <summary>
         /// Gets or sets paragraph formatting
         /// </summary>
         [RtfSortIndex(2), RtfInclude(ConditionMember = "IsFormattingIncluded")]
-        public IParagraphFormatting Formatting
-        {
-            get { return _formatting; }
-            //set { _formatting = value; }
-        }
+        public IParagraphFormatting Formatting { get; private set; }
 
         /// <summary>
         /// Default language is English (United States).
@@ -90,40 +80,45 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// </summary>
         public void Clear()
         {
-            Contents.Clear();
-            Paragraphs.Clear();
+            ContentsInternal.Clear();
+            ParagraphsInternal.Clear();
         }
         #endregion
 
+        #region IFormattedParagraphInternal members ---------------------------
+        [RtfIgnore]
+        public IParagraphFormatting FormattingInternal { set { Formatting = value; } }
+        #endregion
+
         #region base members override -----------------------------------------
-        
+
         /// <summary>
         /// Returns IParagraphFormatting of the paragraph.
         /// </summary>
         public override IParagraphFormatting GetFormatting()
         {
-            return _formatting;
+            return Formatting;
         }
         #endregion 
 
         #region constructor ---------------------------------------------------
         public FormattedParagraph(ITwipConverter twipConverter)
         {
-            _formatting =  new ParagraphFormatting(twipConverter);
+            Formatting =  new ParagraphFormatting(twipConverter);
         }
 
         /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
         public FormattedParagraph(ITwipConverter twipConverter, string text) : base(text)
         {
-            _formatting = new ParagraphFormatting(twipConverter);
+            Formatting = new ParagraphFormatting(twipConverter);
         }
 
         /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
-        public FormattedParagraph(ITwipConverter twipConverter, ParagraphContent text) : base(text)
+        public FormattedParagraph(ITwipConverter twipConverter, IParagraphContent text) : base(text)
         {
-            _formatting = new ParagraphFormatting(twipConverter);
+            Formatting = new ParagraphFormatting(twipConverter);
         }
 
         /// <param name="twipConverter"></param>
@@ -131,21 +126,21 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// <param name="align"></param>
         public FormattedParagraph(ITwipConverter twipConverter, float fontSize, ETextAlign align) 
         {
-            _formatting = new ParagraphFormatting(twipConverter, fontSize, align);
+            Formatting = new ParagraphFormatting(twipConverter, fontSize, align);
         }
 
         /// <param name="twipConverter"></param>
         /// <param name="align"></param>
         public FormattedParagraph(ITwipConverter twipConverter,ETextAlign align)
         {
-            _formatting = new ParagraphFormatting(twipConverter, align);
+            Formatting = new ParagraphFormatting(twipConverter, align);
         }
 
         /// <param name="twipConverter"></param>
         /// <param name="fontSize"></param>
         public FormattedParagraph(ITwipConverter twipConverter, float fontSize)
         {
-            _formatting = new ParagraphFormatting(twipConverter, fontSize);
+            Formatting = new ParagraphFormatting(twipConverter, fontSize);
         }
 
         /// <param name="twipConverter"></param>
@@ -155,17 +150,17 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         public FormattedParagraph(ITwipConverter twipConverter, string text, float fontSize, ETextAlign align)
             : base(text)
         {
-            _formatting = new ParagraphFormatting(twipConverter, fontSize, align);
+            Formatting = new ParagraphFormatting(twipConverter, fontSize, align);
         }
 
         /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
         /// <param name="fontSize"></param>
         /// <param name="align"></param>
-        public FormattedParagraph(ITwipConverter twipConverter,IParagraphContent text, float fontSize, ETextAlign align)
+        public FormattedParagraph(ITwipConverter twipConverter, IParagraphContent text, float fontSize, ETextAlign align)
             : base(text)
         {
-            _formatting = new ParagraphFormatting(twipConverter, fontSize, align);
+            Formatting = new ParagraphFormatting(twipConverter, fontSize, align);
         }
         #endregion
         
@@ -173,11 +168,11 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         private ObservableCollection<ITab> CreateTabsCollection()
         {
             var result = new ObservableCollection<ITab>();
-            result.CollectionChanged += result_CollectionChanged;
+            result.CollectionChanged += TabsCollectionChanged;
             return result;
         }
 
-        private void result_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TabsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems.IfNotNull(notNull => notNull.Count,0) > 0)
                 throw new NotSupportedException();

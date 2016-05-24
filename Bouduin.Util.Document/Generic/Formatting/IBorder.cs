@@ -1,6 +1,6 @@
 ﻿namespace Bouduin.Util.Document.Generic.Formatting
 {
-    internal interface IBorder
+    public interface IBorder
     {
         /// <summary>
         /// Border width in twips.
@@ -29,6 +29,6 @@
         /// Copy all the properties of the current border to specified IBorder object.
         /// </summary>
         /// <param name="border">Border object to copy to.</param>
-        void CopyTo(Border border);
+        void CopyTo(IBorder border);
     }
 }

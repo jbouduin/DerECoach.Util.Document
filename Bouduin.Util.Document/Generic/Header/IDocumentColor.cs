@@ -7,7 +7,7 @@
         int Blue { get; }
 
         /// <summary>
-        /// Condition member used by RtfWriter.
+        /// Condition member
         /// </summary>
         bool IsNotAuto { get; }
 

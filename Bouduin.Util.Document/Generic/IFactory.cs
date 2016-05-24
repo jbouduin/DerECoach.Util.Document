@@ -12,23 +12,52 @@ namespace Bouduin.Util.Document.Generic
 {
     public interface IFactory
     {
+        #region document ------------------------------------------------------
+        /// <summary>
+        /// Create a document 
+        /// </summary>
+        /// <returns></returns>
         IDocument CreateDocument();
-        IDocument CreateDocument(ECodePage codePage);
-        IFormattedParagraph CreateFormattedParagraph();
 
+        /// <summary>
+        /// create a document with the given codepage
+        /// </summary>
+        /// <param name="codePage"></param>
+        /// <returns></returns>
+        IDocument CreateDocument(ECodePage codePage);
+        #endregion
+
+        #region formatted paragraph -------------------------------------------
+        /// <summary>
+        /// Create a formatted paragraph with standard formatting
+        /// </summary>
+        /// <returns></returns>
+        IFormattedParagraph CreateFormattedParagraph();
+        
+        /// <summary>
+        /// Create a formatted paragraph with the given alignment
+        /// </summary>
         /// <param name="align"></param>
         /// <returns></returns>
         IFormattedParagraph CreateFormattedParagraph(ETextAlign align);
 
+        /// <summary>
+        /// Create a formatted paragraph with the given fontsize
+        /// </summary>
         /// <param name="fontSize"></param>
         /// <returns></returns>
         IFormattedParagraph CreateFormattedParagraph(float fontSize);
 
+        /// <summary>
+        /// Create a formatted paragraph with the given alignment and fontsize
+        /// </summary>
         /// <param name="fontSize"></param>
         /// <param name="align"></param>
         /// <returns></returns>
         IFormattedParagraph CreateFormattedParagraph(float fontSize, ETextAlign align);
+        #endregion
 
+        #region formatted text ------------------------------------------------
         IFormattedText CreateFormattedText(string text = null);
 
         /// <param name="text">String value to set as text.</param>
@@ -59,7 +88,9 @@ namespace Bouduin.Util.Document.Generic
             int fontIndex, 
             float fontSize,
             string text = null);
+        #endregion
 
+        #region image ---------------------------------------------------------
         IDocumentImage CreateDocumentImage(Bitmap bitmap);
 
         /// <param name="bitmap"></param>
@@ -71,11 +102,23 @@ namespace Bouduin.Util.Document.Generic
         /// <param name="dpiY">Vertical resolution</param>
         /// <param name="bitmap"></param>
         IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format, float dpiX, float dpiY);
+        #endregion
 
+        #region hyperlink -----------------------------------------------------
         IHyperlink CreateHyperlink(string address, IFormattedText text);
-        ITabCharacter CreateTabCharacter();
-        ITwipConverter CreateTwipConverter();
+        #endregion
 
+        #region special characters --------------------------------------------
+        // TODO add other special characters
+        ITabCharacter CreateTabCharacter();
+        #endregion
+
+        #region utilities -----------------------------------------------------
+        ITwipConverter CreateTwipConverter();
+        #endregion
+
+        #region tabs ----------------------------------------------------------
+        // TODO use position + EMetricUnit instead of twips as input
         /// <param name="position">Tab position in twips</param>
         ITab CreateTab(int position);
 
@@ -91,5 +134,6 @@ namespace Bouduin.Util.Document.Generic
         /// <param name="kind">Tab kind</param>
         /// <param name="lead">Tab lead</param>
         ITab CreateTab(int position, ETabKind kind, ETabLead lead);
+        #endregion
     }
 }

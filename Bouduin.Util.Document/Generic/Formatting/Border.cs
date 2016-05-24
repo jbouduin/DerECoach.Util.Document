@@ -16,7 +16,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         private int _colorIndex = -1;
         #endregion
 
-        #region IBorder members -----------------------------------------------
+        #region IBorder properties --------------------------------------------
         /// <summary>
         /// Border width in twips.
         /// </summary>
@@ -46,8 +46,9 @@ namespace Bouduin.Util.Document.Generic.Formatting
             get { return _colorIndex; }
             set { _colorIndex = value; }
         }
+        #endregion
 
-
+        #region IBorder methods -----------------------------------------------
         /// <summary>
         /// Sets the properties of the current border.
         /// </summary>
@@ -65,7 +66,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// Copy all the properties of the current border to specified IBorder object.
         /// </summary>
         /// <param name="border">Border object to copy to.</param>
-        public void CopyTo(Border border)
+        public void CopyTo(IBorder border)
         {
             border.Width = Width;
             border.Style = Style;

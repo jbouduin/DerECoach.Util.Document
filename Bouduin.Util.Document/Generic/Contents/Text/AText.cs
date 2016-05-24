@@ -8,7 +8,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Text
         protected StringBuilder Sb;
         #endregion
 
-        #region IPlainText members --------------------------------------------
+        #region IText members -------------------------------------------------
         /// <summary>
         /// Appends text to the current object.
         /// </summary>

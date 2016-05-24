@@ -112,10 +112,10 @@ namespace Bouduin.Util.Document.TestProgramm
             //    p1,
             //    p2,
             //});
-            _document.Contents.Add(header);
+            _document.AddContent(header);
             //_rtf.Contents.Add(t);
-            _document.Contents.Add(p1);
-            _document.Contents.Add(p2);
+            _document.AddContent(p1);
+            _document.AddContent(p2);
         }
 
         public IDocument GetRtf()

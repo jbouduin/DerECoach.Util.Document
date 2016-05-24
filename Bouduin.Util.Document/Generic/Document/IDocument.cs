@@ -17,8 +17,12 @@ namespace Bouduin.Util.Document.Generic.Document
 
         ELanguage DefaultLanguage { get; set; }
 
-        // TODO hide the colleciton itself and use an add and an addrange method
-        // eventually indexed
-        ObservableCollection<IDocumentContent> Contents { get; }
+        void AddContent(params IDocumentContent[] documentContents);
+        void InsertContent(int index, params IDocumentContent[] documentContents);
+    }
+
+    internal interface IDocumentInternal : IDocument
+    {
+        ReadOnlyCollection<IDocumentContent> DocumentContentsInternal { get; }
     }
 }

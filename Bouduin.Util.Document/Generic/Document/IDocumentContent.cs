@@ -7,13 +7,10 @@ namespace Bouduin.Util.Document.Generic.Document
         IDocumentContent Parent { get; }
     }
 
-    internal interface IRootDocumentContent
+    public interface IDocumentContentInternal
     {
-        void SetDocument(IDocument document);
+        IDocument DocumentInternal { set; }
+        IDocumentContent ParentInternal { set; }
     }
-
-    internal interface IChildDocumentContent
-    {
-        void SetParent(IDocumentContent parentDocumentContent);
-    }
+    
 }

@@ -7,10 +7,14 @@ namespace Bouduin.Util.Document.Generic.Contents.Text
         
     }
 
+    internal interface IParagraphContentInternal : IParagraphContent, IDocumentContentInternal
+    {
+        
+    }
     /// <summary>
     /// Can be used within a paragraph
     /// </summary>
-    internal abstract class ParagraphContent : ADocumentContent, IParagraphContent, IChildDocumentContent 
+    internal abstract class ParagraphContent : ADocumentContent, IParagraphContentInternal
     {
         
     }

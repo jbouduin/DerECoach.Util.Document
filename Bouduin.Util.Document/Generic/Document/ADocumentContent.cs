@@ -3,7 +3,7 @@
 namespace Bouduin.Util.Document.Generic.Document
 {
 
-    internal abstract class ADocumentContent : IDocumentContent
+    internal abstract class ADocumentContent : IDocumentContentInternal
     {
         #region properties ----------------------------------------------------
         private IDocument _document;
@@ -24,25 +24,18 @@ namespace Bouduin.Util.Document.Generic.Document
             get { return _parent; }
         }
         #endregion
+
+        #region IDocumentContentInternal members ------------------------------
         
-        public void SetDocument(IDocument document)
+        public virtual IDocument DocumentInternal
         {
-            if (_document != null || _parent != null)
-                throw new Exception("Content already belongs to a document");
-
-            _document = document;
+            set { _document = value; }
         }
 
-        public void SetParent(IDocumentContent parentDocumentContent)
+        public virtual IDocumentContent ParentInternal
         {
-            if (_parent != null)
-                throw new Exception("Content already has a parent");
-
-            if (_document != null)
-                throw new Exception("Content is root content and can not have a parent");
-
-            _parent = parentDocumentContent;
+            set { _parent = value; }
         }
-
+        #endregion
     }
 }

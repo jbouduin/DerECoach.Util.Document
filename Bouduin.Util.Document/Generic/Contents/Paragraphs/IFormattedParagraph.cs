@@ -41,4 +41,9 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// </summary>
         void Clear();
     }
+
+    public interface IFormattedParagraphInternal : IFormattedParagraph
+    {
+        IParagraphFormatting FormattingInternal { set; }
+    }
 }

@@ -7,9 +7,8 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
 {
     public interface IBaseParagraph : IDocumentContent
     {
-        bool IsPartOfATable { get; }
-        ObservableCollection<IParagraphContent> Contents { get; }
-        ObservableCollection<IBaseParagraph> Paragraphs { get; }
+        ReadOnlyCollection<IParagraphContent> Contents { get; }
+        ReadOnlyCollection<IBaseParagraph> Paragraphs { get; }
 
         /// <summary>
         /// Add text to paragraph contents
@@ -42,7 +41,11 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         void AppendParagraph(IBaseParagraph paragraph);
 
         IParagraphFormatting GetFormatting();
-        void SetDocument(IDocument document);
-        void SetParent(IDocumentContent parentDocumentContent);
+    
+    }
+
+    internal interface IBaseParagraphInternal : IBaseParagraph, IDocumentContentInternal
+    {
+        bool IsPartOfATable { get; }
     }
 }
