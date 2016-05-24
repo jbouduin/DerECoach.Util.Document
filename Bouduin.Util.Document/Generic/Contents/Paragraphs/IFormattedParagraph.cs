@@ -14,7 +14,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// <summary>
         /// Gets or sets paragraph formatting
         /// </summary>
-        IParagraphFormatting Formatting { get; set; }
+        IParagraphFormatting Formatting { get; }
 
         /// <summary>
         /// Default language is English (United States).

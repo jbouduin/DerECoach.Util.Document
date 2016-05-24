@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Bouduin.Util.Common.Extensions;
+using Bouduin.Util.Document.Common;
 using Bouduin.Util.Document.Generic.Contents.Text;
 using Bouduin.Util.Document.Generic.Document;
 using Bouduin.Util.Document.Generic.Formatting;
@@ -19,7 +20,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         #region fields --------------------------------------------------------
 
         private ELanguage _language = ELanguage.EnglishUnitedStates;
-        private IParagraphFormatting _formatting = new ParagraphFormatting();
+        private IParagraphFormatting _formatting;
         private ObservableCollection<ITab> _tabs;
         private bool _isFormattingIncluded = true;
         private bool _resetFormatting;
@@ -45,7 +46,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         public IParagraphFormatting Formatting
         {
             get { return _formatting; }
-            set { _formatting = value; }
+            //set { _formatting = value; }
         }
 
         /// <summary>
@@ -106,55 +107,65 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         #endregion 
 
         #region constructor ---------------------------------------------------
-        public FormattedParagraph()
+        public FormattedParagraph(ITwipConverter twipConverter)
         {
+            _formatting =  new ParagraphFormatting(twipConverter);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
-        public FormattedParagraph(string text) : base(text)
+        public FormattedParagraph(ITwipConverter twipConverter, string text) : base(text)
         {
+            _formatting = new ParagraphFormatting(twipConverter);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
-        public FormattedParagraph(ParagraphContent text) : base(text)
+        public FormattedParagraph(ITwipConverter twipConverter, ParagraphContent text) : base(text)
         {
+            _formatting = new ParagraphFormatting(twipConverter);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="fontSize"></param>
         /// <param name="align"></param>
-        public FormattedParagraph(float fontSize, ETextAlign align) 
+        public FormattedParagraph(ITwipConverter twipConverter, float fontSize, ETextAlign align) 
         {
-            _formatting = new ParagraphFormatting(fontSize, align);
+            _formatting = new ParagraphFormatting(twipConverter, fontSize, align);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="align"></param>
-        public FormattedParagraph(ETextAlign align)
+        public FormattedParagraph(ITwipConverter twipConverter,ETextAlign align)
         {
-            _formatting = new ParagraphFormatting(align);
+            _formatting = new ParagraphFormatting(twipConverter, align);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="fontSize"></param>
-        public FormattedParagraph(float fontSize)
+        public FormattedParagraph(ITwipConverter twipConverter, float fontSize)
         {
-            _formatting = new ParagraphFormatting(fontSize);
+            _formatting = new ParagraphFormatting(twipConverter, fontSize);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
         /// <param name="fontSize"></param>
         /// <param name="align"></param>
-        public FormattedParagraph(string text, float fontSize, ETextAlign align)
+        public FormattedParagraph(ITwipConverter twipConverter, string text, float fontSize, ETextAlign align)
             : base(text)
         {
-            _formatting = new ParagraphFormatting(fontSize, align);
+            _formatting = new ParagraphFormatting(twipConverter, fontSize, align);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="text">Text to add to paragraph contents</param>
         /// <param name="fontSize"></param>
         /// <param name="align"></param>
-        public FormattedParagraph(IParagraphContent text, float fontSize, ETextAlign align)
+        public FormattedParagraph(ITwipConverter twipConverter,IParagraphContent text, float fontSize, ETextAlign align)
             : base(text)
         {
-            _formatting = new ParagraphFormatting(fontSize, align);
+            _formatting = new ParagraphFormatting(twipConverter, fontSize, align);
         }
         #endregion
         

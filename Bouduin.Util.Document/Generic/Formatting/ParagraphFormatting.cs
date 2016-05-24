@@ -10,6 +10,8 @@ namespace Bouduin.Util.Document.Generic.Formatting
     internal class ParagraphFormatting : IParagraphFormatting
     {
         #region fields --------------------------------------------------------
+
+        private readonly ITwipConverter _twipConverter;
         private ETextAlign _align = ETextAlign.Left;
         private float _fontSize = 12F;
         private int _backgroundColorIndex = -1;
@@ -52,7 +54,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         [RtfSortIndex(4), RtfControlWord("sl")]
         public int TwipLineSpacing
         {
-            get { return (int)Math.Round(LineSpacingPercent * FontSize * TwipConverter.TwipsInPoint); }
+            get { return (int)Math.Round(LineSpacingPercent * FontSize * _twipConverter.TwipsInPoint); }
         }
 
         /// <summary>
@@ -126,15 +128,17 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// <summary>
         /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
-        public ParagraphFormatting()
+        public ParagraphFormatting(ITwipConverter twipconverter)
         {
+            _twipConverter = twipconverter;
         }
 
         /// <summary>
         /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
+        /// <param name="twipconverter"></param>
         /// <param name="fontSize">Font size in points.</param>
-        public ParagraphFormatting(float fontSize)
+        public ParagraphFormatting(ITwipConverter twipconverter, float fontSize): this(twipconverter)
         {
             FontSize = fontSize;
         }
@@ -142,8 +146,10 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// <summary>
         /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
+        /// <param name="twipconverter"></param>
         /// <param name="align">Text align inside the paragraph.</param>
-        public ParagraphFormatting(ETextAlign align)
+        public ParagraphFormatting(ITwipConverter twipconverter, ETextAlign align)
+            : this(twipconverter)
         {
             Align = align;
         }
@@ -151,9 +157,11 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// <summary>
         /// Initializes a new instance of ParagraphFormatting class.
         /// </summary>
+        /// <param name="twipconverter"></param>
         /// <param name="fontSize">Font size in points.</param>
         /// <param name="align">Text align inside the paragraph.</param>
-        public ParagraphFormatting(float fontSize, ETextAlign align)
+        public ParagraphFormatting(ITwipConverter twipconverter, float fontSize, ETextAlign align)
+            : this(twipconverter)
         {
             FontSize = fontSize;
             Align = align;

@@ -9,11 +9,14 @@ namespace Bouduin.Util.Document.Generic.Formatting
     /// </summary>
     internal class Border : IBorder
     {
+        #region fields --------------------------------------------------------
+        private readonly ITwipConverter _twipConverter;
         private int _width = 10;
         private EBorderStyle _style = EBorderStyle.SingleThicknessBorder;
         private int _colorIndex = -1;
+        #endregion
 
-
+        #region IBorder members -----------------------------------------------
         /// <summary>
         /// Border width in twips.
         /// </summary>
@@ -53,7 +56,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// <param name="colorIndex">Index of entry in the color table.</param>
         public void SetProperties(float width, EBorderStyle style, int colorIndex)
         {
-            Width = TwipConverter.ToTwip(width, EMetricUnit.Point);
+            Width = _twipConverter.ToTwip(width, EMetricUnit.Point);
             Style = style;
             ColorIndex = colorIndex;
         }
@@ -68,5 +71,14 @@ namespace Bouduin.Util.Document.Generic.Formatting
             border.Style = Style;
             border.ColorIndex = ColorIndex;
         }
+        #endregion
+
+        #region constructor ---------------------------------------------------
+
+        public Border(ITwipConverter twipConverter)
+        {
+            _twipConverter = twipConverter;
+        }
+        #endregion
     }
 }

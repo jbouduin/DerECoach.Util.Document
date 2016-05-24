@@ -1,50 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
 using Bouduin.Util.Document.Primitives;
 
 namespace Bouduin.Util.Document.Common
 {
-    // TODO remove static stuff
-
     /// <summary>
     /// Converts twips to metric units, and metric units to twips
     /// </summary>
-    public class TwipConverter
+    internal class TwipConverter : ITwipConverter
     {
-        public const float PointsInTwip = .05F;
-        public const float MillimetersInTwip = .0176389F;
-        public const float CentimetersInTwip = .0017639F;
-        public const float InchsInTwip = 1F/1440;
+        #region fields --------------------------------------------------------
+        private readonly float _pointsInTwip = .05F;
+        private readonly float _millimetersInTwip = .0176389F;
+        private readonly float _centimetersInTwip = .0017639F;
+        private readonly float _inchsInTwip = 1F / 1440;
 
-        public const float TwipsInPoint = 20;
-        public const float TwipsInMillimeter = 56.6929134F;
-        public const float TwipsInCentimeter = 566.9291339F;
-        public const float TwipsInInch = 1440F;
+        private readonly float _twipsInPoint = 20;
+        private readonly float _twipsInMillimeter = 56.6929134F;
+        private readonly float _twipsInCentimeter = 566.9291339F;
+        private readonly float _twipsInInch = 1440F;
 
-        private static readonly float[]
-            ToUnitConversion = {
-                PointsInTwip,
-                MillimetersInTwip,
-                CentimetersInTwip,
-                InchsInTwip,
-            };
+        private readonly Dictionary<EMetricUnit, float> _toUnitConversion;
 
-        private static readonly float[]
-            ToTwipConversion = {
-                TwipsInPoint,
-                TwipsInMillimeter,
-                TwipsInCentimeter,
-                TwipsInInch,
-            };
+        private readonly Dictionary<EMetricUnit, float> _toTwipConversion;
 
+        #endregion
+
+        #region ITwipConverter members ----------------------------------------
         /// <summary>
         /// Converts metric values to twips
         /// </summary>
         /// <param name="value">Value in metric units</param>
         /// <param name="unit">Unit which is used to specify the value</param>
         /// <returns>Value in twips</returns>
-        public static int ToTwip(float value, EMetricUnit unit)
-        {   
-            return (int)Math.Round(value * ToTwipConversion[(int)unit]);
+        public int ToTwip(float value, EMetricUnit unit)
+        {
+            return (int) Math.Round(value*_toTwipConversion[unit]);
         }
 
         /// <summary>
@@ -52,7 +43,7 @@ namespace Bouduin.Util.Document.Common
         /// </summary>
         /// <param name="value">Value in twips</param>
         /// <returns>Value in points</returns>
-        public static float ToPoint(int value)
+        public float ToPoint(int value)
         {
             return ToMetricUnit(value, EMetricUnit.Point);
         }
@@ -62,7 +53,7 @@ namespace Bouduin.Util.Document.Common
         /// </summary>
         /// <param name="value">Value in twips</param>
         /// <returns>Value in millimeters</returns>
-        public static float ToMillimeter(int value)
+        public float ToMillimeter(int value)
         {
             return ToMetricUnit(value, EMetricUnit.Millimeter);
         }
@@ -72,7 +63,7 @@ namespace Bouduin.Util.Document.Common
         /// </summary>
         /// <param name="value">Value in twips</param>
         /// <returns>Value in centimeters</returns>
-        public static float ToCentimeter(int value)
+        public float ToCentimeter(int value)
         {
             return ToMetricUnit(value, EMetricUnit.Centimeter);
         }
@@ -83,9 +74,72 @@ namespace Bouduin.Util.Document.Common
         /// <param name="value">Value in twips</param>
         /// <param name="unit">Metric unit to convert to</param>
         /// <returns>Value in specified metric units</returns>
-        public static float ToMetricUnit(int value, EMetricUnit unit)
+        public float ToMetricUnit(int value, EMetricUnit unit)
         {
-            return (float)Math.Round(value * ToUnitConversion[(int)unit]);
+            return (float) Math.Round(value*_toUnitConversion[unit]);
         }
+
+        public float PointsInTwip
+        {
+            get { return _pointsInTwip; }
+        }
+
+        public float MillimetersInTwip
+        {
+            get { return _millimetersInTwip; }
+        }
+
+        public float CentimetersInTwip
+        {
+            get { return _centimetersInTwip; }
+        }
+
+        public float InchsInTwip
+        {
+            get { return _inchsInTwip; }
+        }
+
+        public float TwipsInPoint
+        {
+            get { return _twipsInPoint; }
+        }
+
+        public float TwipsInMillimeter
+        {
+            get { return _twipsInMillimeter; }
+        }
+
+        public float TwipsInCentimeter
+        {
+            get { return _twipsInCentimeter; }
+        }
+
+        public float TwipsInInch
+        {
+            get { return _twipsInInch; }
+        }
+        #endregion
+
+        #region constructor ---------------------------------------------------
+
+        public TwipConverter()
+        {
+            _toUnitConversion = new Dictionary<EMetricUnit, float>
+            {
+                {EMetricUnit.Point, PointsInTwip},
+                {EMetricUnit.Millimeter, MillimetersInTwip},
+                {EMetricUnit.Centimeter, CentimetersInTwip},
+                {EMetricUnit.Inch, InchsInTwip}
+            };
+
+            _toTwipConversion = new Dictionary<EMetricUnit, float>()
+            {
+                {EMetricUnit.Point, TwipsInPoint},
+                {EMetricUnit.Millimeter, TwipsInMillimeter},
+                {EMetricUnit.Centimeter, TwipsInCentimeter},
+                {EMetricUnit.Inch, TwipsInInch}
+            };
+        }
+        #endregion
     }
 }

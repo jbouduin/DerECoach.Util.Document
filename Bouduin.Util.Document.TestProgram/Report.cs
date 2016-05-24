@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using Bouduin.Util.Document.Common;
 using Bouduin.Util.Document.Generic.Contents.Image;
 using Bouduin.Util.Document.Generic.Contents.Paragraphs;
 using Bouduin.Util.Document.Generic.Contents.Text;
@@ -21,7 +20,7 @@ namespace Bouduin.Util.Document.TestProgramm
             var constantia = _rtf.AddFont("Constantia");
             var red = _rtf.AddColor(Color.Red);
             var blue =_rtf.AddColor(0, 0, 255);
-
+            var twipConverter = Factory.CreateTwipConverter();
             //var LeftAligned12 = RtfParagraphFormatting(12, RtfTextAlign.Left);
             //var Centered10 = RtfParagraphFormatting(10, RtfTextAlign.Center);
 
@@ -29,7 +28,7 @@ namespace Bouduin.Util.Document.TestProgramm
             
             //var t = RtfTable(RtfTableAlign.Center, 2, 3);
 
-            header.Formatting.SpaceAfter = TwipConverter.ToTwip(12F, EMetricUnit.Point);
+            header.Formatting.SpaceAfter = twipConverter.ToTwip(12F, EMetricUnit.Point);
             header.Formatting.FontIndex = calibri;
             header.AppendText("Calibri ");
             header.AppendText(Factory.CreateFormattedText(ECharacterFormatting.Bold,"Bold"));
@@ -66,8 +65,8 @@ namespace Bouduin.Util.Document.TestProgramm
 
             var p1 = Factory.CreateFormattedParagraph(12, ETextAlign.Left);
             p1.Formatting.FontIndex = constantia;
-            p1.Formatting.IndentLeft = TwipConverter.ToTwip(6.05F, EMetricUnit.Centimeter);
-            p1.Formatting.SpaceBefore = TwipConverter.ToTwip(6F, EMetricUnit.Point);
+            p1.Formatting.IndentLeft = twipConverter.ToTwip(6.05F, EMetricUnit.Centimeter);
+            p1.Formatting.SpaceBefore = twipConverter.ToTwip(6F, EMetricUnit.Point);
             p1.AppendText("Constantia ");
             p1.AppendText(Factory.CreateFormattedText(ECharacterFormatting.Superscript, "Superscript"));
             p1.AppendParagraph(Factory.CreateFormattedText(-1, 8, "Inline"));
@@ -87,11 +86,11 @@ namespace Bouduin.Util.Document.TestProgramm
             var p2 = Factory.CreateFormattedParagraph();
             p2.Formatting.FontSize = 10;
             
-            p2.Tabs.Add(Factory.CreateTab(TwipConverter.ToTwip(2.5F, EMetricUnit.Centimeter), ETabKind.Decimal));
-            p2.Tabs.Add(Factory.CreateTab(TwipConverter.ToTwip(5F, EMetricUnit.Centimeter), ETabKind.FlushRight, ETabLead.Dots));
-            p2.Tabs.Add(Factory.CreateTab(TwipConverter.ToTwip(7.5F, EMetricUnit.Centimeter)));
-            p2.Tabs.Add(Factory.CreateTab(TwipConverter.ToTwip(10F, EMetricUnit.Centimeter), ETabKind.Centered));
-            p2.Tabs.Add(Factory.CreateTab(TwipConverter.ToTwip(15F, EMetricUnit.Centimeter), ETabLead.Hyphens));
+            p2.Tabs.Add(Factory.CreateTab(twipConverter.ToTwip(2.5F, EMetricUnit.Centimeter), ETabKind.Decimal));
+            p2.Tabs.Add(Factory.CreateTab(twipConverter.ToTwip(5F, EMetricUnit.Centimeter), ETabKind.FlushRight, ETabLead.Dots));
+            p2.Tabs.Add(Factory.CreateTab(twipConverter.ToTwip(7.5F, EMetricUnit.Centimeter)));
+            p2.Tabs.Add(Factory.CreateTab(twipConverter.ToTwip(10F, EMetricUnit.Centimeter), ETabKind.Centered));
+            p2.Tabs.Add(Factory.CreateTab(twipConverter.ToTwip(15F, EMetricUnit.Centimeter), ETabLead.Hyphens));
 
             p2.Tabs[2].Bar = true;
 

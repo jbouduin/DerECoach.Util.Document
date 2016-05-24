@@ -61,6 +61,7 @@
     <Compile Include="..\Shared\VersionInfo\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Common\ITwipConverter.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Generic\Attributes\EEnumConversion.cs" />
     <Compile Include="Generic\Contents\Paragraphs\IFormattedParagraph.cs" />

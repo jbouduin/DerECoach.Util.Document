@@ -16,6 +16,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Image
     [RtfControlWord("pict"), RtfEnclosingBraces]
     internal class DocumentImage : ParagraphContent, IDocumentImage
     {
+        private readonly ITwipConverter _twipConverter;
         private const int MillimetersInInch = 2540;
 
         private Bitmap _bitmap;
@@ -152,9 +153,12 @@ namespace Bouduin.Util.Document.Generic.Contents.Image
         }
 
         #region constructor ---------------------------------------------------
+
+        /// <param name="twipConverter"></param>
         /// <param name="bitmap">Bitmap</param>
-        public DocumentImage(Bitmap bitmap)
+        public DocumentImage(ITwipConverter twipConverter, Bitmap bitmap)
         {
+            _twipConverter = twipConverter;
             var format = EImageFormat.Wmf;
 
             if (bitmap.RawFormat.Equals(ImageFormat.Jpeg))
@@ -169,19 +173,23 @@ namespace Bouduin.Util.Document.Generic.Contents.Image
             Initialize(bitmap, format);
         }
 
+        /// <param name="twipConverter"></param>
         /// <param name="bitmap"></param>
         /// <param name="format">Image format</param>
-        public DocumentImage(Bitmap bitmap, EImageFormat format)
+        public DocumentImage(ITwipConverter twipConverter, Bitmap bitmap, EImageFormat format)
         {
+            _twipConverter = twipConverter;
             Initialize(bitmap, format);
         }
 
         /// <param name="format"></param>
         /// <param name="dpiX">Horizontal resolution</param>
         /// <param name="dpiY">Vertical resolution</param>
+        /// <param name="twipConverter"></param>
         /// <param name="bitmap"></param>
-        public DocumentImage(Bitmap bitmap, EImageFormat format, float dpiX, float dpiY)
+        public DocumentImage(ITwipConverter twipConverter, Bitmap bitmap, EImageFormat format, float dpiX, float dpiY)
         {
+            _twipConverter = twipConverter;
             Initialize(bitmap, format, dpiX, dpiY);
         }
         #endregion
@@ -216,8 +224,8 @@ namespace Bouduin.Util.Document.Generic.Contents.Image
             _dpiX = dpiX;
             _dpiY = dpiY;
 
-            Width = (int)Math.Round(_bitmap.Width * TwipConverter.TwipsInInch / dpiX);
-            Height = (int)Math.Round(_bitmap.Height * TwipConverter.TwipsInInch / dpiY);
+            Width = (int)Math.Round(_bitmap.Width * _twipConverter.TwipsInInch / dpiX);
+            Height = (int)Math.Round(_bitmap.Height * _twipConverter.TwipsInInch / dpiY);
 
             _wmfWidth = (int)Math.Round(_bitmap.Width * MillimetersInInch / dpiX);
             _wmfHeight = (int)Math.Round(_bitmap.Height * MillimetersInInch / dpiY);

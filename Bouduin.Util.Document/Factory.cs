@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Bouduin.Util.Document.Common;
 using Bouduin.Util.Document.Generic.Contents.Image;
 using Bouduin.Util.Document.Generic.Contents.Paragraphs;
 using Bouduin.Util.Document.Generic.Contents.SpecialCharacters;
@@ -31,21 +32,21 @@ namespace Bouduin.Util.Document
 
         public static IFormattedParagraph CreateFormattedParagraph()
         {
-            return new FormattedParagraph();
+            return new FormattedParagraph(new TwipConverter());
         }
 
         /// <param name="align"></param>
         /// <returns></returns>
         public static IFormattedParagraph CreateFormattedParagraph(ETextAlign align)
         {
-            return new FormattedParagraph(align);
+            return new FormattedParagraph(new TwipConverter(), align);
         }
 
         /// <param name="fontSize"></param>
         /// <returns></returns>
         public static IFormattedParagraph CreateFormattedParagraph(float fontSize)
         {
-            return new FormattedParagraph(fontSize);
+            return new FormattedParagraph(new TwipConverter(), fontSize);
         }
 
         /// <param name="fontSize"></param>
@@ -53,7 +54,7 @@ namespace Bouduin.Util.Document
         /// <returns></returns>
         public static IFormattedParagraph CreateFormattedParagraph(float fontSize, ETextAlign align)
         {
-            return new FormattedParagraph(fontSize, align);
+            return new FormattedParagraph(new TwipConverter(), fontSize, align);
         }
         #endregion
 
@@ -114,14 +115,14 @@ namespace Bouduin.Util.Document
         #region IDocumentImage ------------------------------------------------
         public static IDocumentImage CreateDocumentImage(Bitmap bitmap)
         {
-            return new DocumentImage(bitmap);
+            return new DocumentImage(new TwipConverter(), bitmap);
         }
 
         /// <param name="bitmap"></param>
         /// <param name="format">Image format</param>
         public static IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format)
         {
-            return new DocumentImage(bitmap, format);
+            return new DocumentImage(new TwipConverter(), bitmap, format);
         }
 
         /// <param name="format"></param>
@@ -130,7 +131,7 @@ namespace Bouduin.Util.Document
         /// <param name="bitmap"></param>
         public static IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format, float dpiX, float dpiY)
         {
-            return new DocumentImage(bitmap, format, dpiX, dpiY);
+            return new DocumentImage(new TwipConverter(), bitmap, format, dpiX, dpiY);
         }
         #endregion
 
@@ -150,6 +151,13 @@ namespace Bouduin.Util.Document
         }
         #endregion
 
+        #region utilities -----------------------------------------------------
+
+        public static ITwipConverter CreateTwipConverter()
+        {
+            return new TwipConverter();
+        }
+        #endregion
         #region ITab ----------------------------------------------------------
         /// <param name="position">Tab position in twips</param>
         public static ITab CreateTab(int position)

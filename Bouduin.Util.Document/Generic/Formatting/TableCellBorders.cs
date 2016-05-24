@@ -1,4 +1,5 @@
-﻿using Bouduin.Util.Document.Rtf.Attributes;
+﻿using Bouduin.Util.Document.Common;
+using Bouduin.Util.Document.Rtf.Attributes;
 
 namespace Bouduin.Util.Document.Generic.Formatting
 {
@@ -7,19 +8,22 @@ namespace Bouduin.Util.Document.Generic.Formatting
     /// </summary>
     internal class TableCellBorders
     {
-        private readonly Border _top = new Border();
+        #region fields --------------------------------------------------------
 
-        private readonly Border _left = new Border();
+        private readonly IBorder _top;
+        private readonly IBorder _left;
+        private readonly IBorder _bottom;
+        private readonly IBorder _right;
 
-        private readonly Border _bottom = new Border();
+        #endregion
 
-        private readonly Border _right = new Border();
+        #region ITableCellBorders members -------------------------------------
 
         /// <summary>
         /// Gets the top border of the cell.
         /// </summary>
         [RtfControlWord("clbrdrt"), RtfInclude(ConditionMember = "IsTopBorderSet")]
-        public Border Top
+        public IBorder Top
         {
             get { return _top; }
         }
@@ -28,7 +32,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// Gets the left border of the cell.
         /// </summary>
         [RtfControlWord("clbrdrl"), RtfInclude(ConditionMember = "IsLeftBorderSet")]
-        public Border Left
+        public IBorder Left
         {
             get { return _left; }
         }
@@ -37,7 +41,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// Gets the bottom border of the cell.
         /// </summary>
         [RtfControlWord("clbrdrb"), RtfInclude(ConditionMember = "IsBottomBorderSet")]
-        public Border Bottom
+        public IBorder Bottom
         {
             get { return _bottom; }
         }
@@ -46,7 +50,7 @@ namespace Bouduin.Util.Document.Generic.Formatting
         /// Gets the right border of the cell.
         /// </summary>
         [RtfControlWord("clbrdrr"), RtfInclude(ConditionMember = "IsRightBorderSet")]
-        public Border Right
+        public IBorder Right
         {
             get { return _right; }
         }
@@ -82,5 +86,19 @@ namespace Bouduin.Util.Document.Generic.Formatting
         {
             get { return Right.Width > 0; }
         }
+
+        #endregion
+
+        #region constructor ---------------------------------------------------
+
+        public TableCellBorders(ITwipConverter twipConverter)
+        {
+            _top = new Border(twipConverter);
+            _left = new Border(twipConverter);
+            _bottom = new Border(twipConverter);
+            _right = new Border(twipConverter);
+        }
+
+        #endregion
     }
 }
