@@ -62,7 +62,8 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Common\ITwipConverter.cs" />
-    <Compile Include="Factory.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="Generic\Factory.cs" />
     <Compile Include="Generic\Attributes\EEnumConversion.cs" />
     <Compile Include="Generic\Contents\Paragraphs\IFormattedParagraph.cs" />
     <Compile Include="Generic\Contents\Paragraphs\ITab.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Generic\Formatting\IBorder.cs" />
     <Compile Include="Generic\Header\IDocumentColor.cs" />
     <Compile Include="Generic\Header\IDocumentFont.cs" />
+    <Compile Include="Generic\IFactory.cs" />
     <Compile Include="Primitives\EMetricUnit.cs" />
     <Compile Include="Generic\Attributes\ANamedAttribute.cs" />
     <Compile Include="Rtf\Attributes\RtfControlGroupAttribute.cs" />

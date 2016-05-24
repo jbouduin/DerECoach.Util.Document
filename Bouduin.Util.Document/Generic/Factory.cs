@@ -9,19 +9,18 @@ using Bouduin.Util.Document.Generic.Document;
 using Bouduin.Util.Document.Generic.Formatting;
 using Bouduin.Util.Document.Primitives;
 
-namespace Bouduin.Util.Document
+namespace Bouduin.Util.Document.Generic
 {
-    // TODO extract Interface
-    public class Factory
+    internal class Factory : IFactory
     {
         #region IDocument -----------------------------------------------------
 
-        public static IDocument CreateDocument()
+        public IDocument CreateDocument()
         {
             return new Generic.Document.Document();
         }
 
-        public static IDocument CreateDocument(ECodePage codePage)
+        public IDocument CreateDocument(ECodePage codePage)
         {
             return new Generic.Document.Document(codePage);
         }
@@ -30,21 +29,21 @@ namespace Bouduin.Util.Document
 
         #region IFormattedParagraph -------------------------------------------
 
-        public static IFormattedParagraph CreateFormattedParagraph()
+        public IFormattedParagraph CreateFormattedParagraph()
         {
             return new FormattedParagraph(new TwipConverter());
         }
 
         /// <param name="align"></param>
         /// <returns></returns>
-        public static IFormattedParagraph CreateFormattedParagraph(ETextAlign align)
+        public IFormattedParagraph CreateFormattedParagraph(ETextAlign align)
         {
             return new FormattedParagraph(new TwipConverter(), align);
         }
 
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        public static IFormattedParagraph CreateFormattedParagraph(float fontSize)
+        public IFormattedParagraph CreateFormattedParagraph(float fontSize)
         {
             return new FormattedParagraph(new TwipConverter(), fontSize);
         }
@@ -52,7 +51,7 @@ namespace Bouduin.Util.Document
         /// <param name="fontSize"></param>
         /// <param name="align"></param>
         /// <returns></returns>
-        public static IFormattedParagraph CreateFormattedParagraph(float fontSize, ETextAlign align)
+        public IFormattedParagraph CreateFormattedParagraph(float fontSize, ETextAlign align)
         {
             return new FormattedParagraph(new TwipConverter(), fontSize, align);
         }
@@ -60,21 +59,21 @@ namespace Bouduin.Util.Document
 
         #region IFormattedText ------------------------------------------------
 
-        public static IFormattedText CreateFormattedText(string text = null)
+        public IFormattedText CreateFormattedText(string text = null)
         {
             return new FormattedText(text);
         }
 
         /// <param name="text">String value to set as text.</param>
         /// <param name="colorIndex">Index of an entry in the color table.</param>
-        public static IFormattedText CreateFormattedText(int colorIndex, string text = null)
+        public IFormattedText CreateFormattedText(int colorIndex, string text = null)
         {
             return new FormattedText(colorIndex, text);
         }
 
         /// <param name="text">String value to set as text.</param>
         /// <param name="formatting">Character formatting to apply to the text.</param>
-        public static IFormattedText CreateFormattedText(ECharacterFormatting formatting, string text = null)
+        public IFormattedText CreateFormattedText(ECharacterFormatting formatting, string text = null)
         {
             return new FormattedText(formatting, text);
         }
@@ -82,7 +81,7 @@ namespace Bouduin.Util.Document
         /// <param name="formatting">Character formatting to apply to the text.</param>
         /// <param name="colorIndex">Index of an entry in the color table.</param>
         /// <param name="text">String value to set as text.</param>
-        public static IFormattedText CreateFormattedText(ECharacterFormatting formatting, int colorIndex,
+        public IFormattedText CreateFormattedText(ECharacterFormatting formatting, int colorIndex,
             string text = null)
         {
             return new FormattedText(formatting, colorIndex, text);
@@ -91,7 +90,7 @@ namespace Bouduin.Util.Document
         /// <param name="text">String value to set as text.</param>
         /// <param name="fontIndex">Index of an entry in the font table.</param>
         /// <param name="fontSize"></param>
-        public static IFormattedText CreateFormattedText(int fontIndex, float fontSize, string text = null)
+        public IFormattedText CreateFormattedText(int fontIndex, float fontSize, string text = null)
 
         {
             return new FormattedText(fontIndex, fontSize, text);
@@ -101,7 +100,7 @@ namespace Bouduin.Util.Document
         /// <param name="fontIndex">Index of an entry in the font table.</param>
         /// <param name="fontSize"></param>
         /// <param name="text">String value to set as text.</param>
-        public static IFormattedText CreateFormattedText(
+        public IFormattedText CreateFormattedText(
             ECharacterFormatting formatting, 
             int fontIndex, 
             float fontSize,
@@ -113,14 +112,14 @@ namespace Bouduin.Util.Document
         #endregion
 
         #region IDocumentImage ------------------------------------------------
-        public static IDocumentImage CreateDocumentImage(Bitmap bitmap)
+        public IDocumentImage CreateDocumentImage(Bitmap bitmap)
         {
             return new DocumentImage(new TwipConverter(), bitmap);
         }
 
         /// <param name="bitmap"></param>
         /// <param name="format">Image format</param>
-        public static IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format)
+        public IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format)
         {
             return new DocumentImage(new TwipConverter(), bitmap, format);
         }
@@ -129,7 +128,7 @@ namespace Bouduin.Util.Document
         /// <param name="dpiX">Horizontal resolution</param>
         /// <param name="dpiY">Vertical resolution</param>
         /// <param name="bitmap"></param>
-        public static IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format, float dpiX, float dpiY)
+        public IDocumentImage CreateDocumentImage(Bitmap bitmap, EImageFormat format, float dpiX, float dpiY)
         {
             return new DocumentImage(new TwipConverter(), bitmap, format, dpiX, dpiY);
         }
@@ -137,7 +136,7 @@ namespace Bouduin.Util.Document
 
         #region IHyperlink ----------------------------------------------------
 
-        public static IHyperlink CreateHyperlink(string address, IFormattedText text)
+        public IHyperlink CreateHyperlink(string address, IFormattedText text)
         {
             return new Hyperlink(address, text);
         }
@@ -145,7 +144,7 @@ namespace Bouduin.Util.Document
 
         #region special characters --------------------------------------------
 
-        public static ITabCharacter CreateTabCharacter()
+        public ITabCharacter CreateTabCharacter()
         {
             return new TabCharacter();
         }
@@ -153,28 +152,29 @@ namespace Bouduin.Util.Document
 
         #region utilities -----------------------------------------------------
 
-        public static ITwipConverter CreateTwipConverter()
+        public ITwipConverter CreateTwipConverter()
         {
             return new TwipConverter();
         }
         #endregion
+
         #region ITab ----------------------------------------------------------
         /// <param name="position">Tab position in twips</param>
-        public static ITab CreateTab(int position)
+        public ITab CreateTab(int position)
         {
             return new Tab(position);
         }
 
         /// <param name="position">Tab position in twips</param>
         /// <param name="kind">Tab kind</param>
-        public static ITab CreateTab(int position, ETabKind kind)
+        public ITab CreateTab(int position, ETabKind kind)
         {
             return new Tab(position, kind);
         }
 
         /// <param name="position">Tab position in twips</param>
         /// <param name="lead">Tab lead</param>
-        public static ITab CreateTab(int position, ETabLead lead)
+        public ITab CreateTab(int position, ETabLead lead)
         {
             return new Tab(position, lead);
         }
@@ -183,7 +183,7 @@ namespace Bouduin.Util.Document
         /// <param name="position">Tab position in twips</param>
         /// <param name="kind">Tab kind</param>
         /// <param name="lead">Tab lead</param>
-        public static ITab CreateTab(int position, ETabKind kind, ETabLead lead)
+        public ITab CreateTab(int position, ETabKind kind, ETabLead lead)
         {
             return new Tab(position, kind, lead);
         }
