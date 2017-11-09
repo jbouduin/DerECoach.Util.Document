@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Generic.Formatting;
 
 namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
@@ -42,7 +42,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         void Clear();
     }
 
-    public interface IFormattedParagraphInternal : IFormattedParagraph
+    internal interface IFormattedParagraphInternal : IFormattedParagraph, IBaseParagraphInternal, IDocumentContentInternal
     {
         IParagraphFormatting FormattingInternal { set; }
     }

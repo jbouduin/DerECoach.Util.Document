@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     
     internal abstract class AAttributeInfo

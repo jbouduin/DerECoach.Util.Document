@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     internal interface IADocumentInfo<out TAttributeInfo> where TAttributeInfo : AAttributeInfo, new() 
     {

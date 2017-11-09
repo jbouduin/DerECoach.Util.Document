@@ -2,7 +2,7 @@
 using System.Drawing;
 using Bouduin.Util.Document.Generic.Header;
 
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     public interface IDocument
     {

@@ -13,7 +13,7 @@
         EBorderStyle Style { get; set; }
 
         /// <summary>
-        /// Index of entry in the color table. Default is -1 and is ignored by RtfWriter.
+        /// Index of entry in the color table. Default is -1
         /// </summary>
         int ColorIndex { get; set; }
 
@@ -25,6 +25,7 @@
         /// <param name="colorIndex">Index of entry in the color table.</param>
         void SetProperties(float width, EBorderStyle style, int colorIndex);
 
+        // TODO convert to clone method
         /// <summary>
         /// Copy all the properties of the current border to specified IBorder object.
         /// </summary>

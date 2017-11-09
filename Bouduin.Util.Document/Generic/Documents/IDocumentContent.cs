@@ -1,5 +1,5 @@
 ﻿
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     public interface IDocumentContent
     {
@@ -7,7 +7,7 @@ namespace Bouduin.Util.Document.Generic.Document
         IDocumentContent Parent { get; }
     }
 
-    public interface IDocumentContentInternal
+    public interface IDocumentContentInternal: IDocumentContent
     {
         IDocument DocumentInternal { set; }
         IDocumentContent ParentInternal { set; }

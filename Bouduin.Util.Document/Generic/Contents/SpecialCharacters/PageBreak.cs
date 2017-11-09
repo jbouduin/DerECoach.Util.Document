@@ -1,4 +1,4 @@
-﻿using Bouduin.Util.Document.Generic.Document;
+﻿using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Rtf.Attributes;
 
 namespace Bouduin.Util.Document.Generic.Contents.SpecialCharacters

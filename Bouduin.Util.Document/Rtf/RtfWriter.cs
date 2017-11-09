@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Bouduin.Util.Document.Generic.Attributes;
-using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Rtf.Attributes;
 using Bouduin.Util.Document.Rtf.Document;
 
@@ -32,7 +32,7 @@ namespace Bouduin.Util.Document.Rtf
         /// <param name="document">The IDocument to write.</param>
         public void Write(TextWriter writer, IDocument document)
         {
-            var doc = document as Generic.Document.Document;
+            var doc = document as Generic.Documents.Document;
             // ReSharper disable once PossibleNullReferenceException
             _encoding = Encoding.GetEncoding((int)doc.CodePage);
             

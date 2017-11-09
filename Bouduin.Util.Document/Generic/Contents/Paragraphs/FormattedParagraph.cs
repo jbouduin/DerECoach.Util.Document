@@ -5,7 +5,7 @@ using System.Linq;
 using Bouduin.Util.Common.Extensions;
 using Bouduin.Util.Document.Common;
 using Bouduin.Util.Document.Generic.Contents.Text;
-using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Generic.Formatting;
 using Bouduin.Util.Document.Rtf.Attributes;
 
@@ -66,10 +66,11 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
             get { return _language != Document.DefaultLanguage; }
         }
 
+        // TODO why set ?
         /// <summary>
         /// Gets or sets a Boolean value indicating whether RtfWriter must include formatting
         /// </summary>
-        public bool IsFormattingIncluded
+        public virtual bool IsFormattingIncluded
         {
             get { return _isFormattingIncluded; }
             set { _isFormattingIncluded = value; }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Bouduin.Util.Document.Generic.Contents.Text;
-using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Generic.Formatting;
 
 namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
@@ -16,9 +16,9 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         void AppendText(string text);
 
         /// <summary>
-        /// Add text to paragraph contents
+        /// Add contents to paragraph contents
         /// </summary>
-        void AppendText(IParagraphContent text);
+        void AppendContent(IParagraphContent text);
 
         /// <summary>
         /// Add an empty paragraph with inherited formatting
@@ -46,6 +46,6 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
 
     internal interface IBaseParagraphInternal : IBaseParagraph, IDocumentContentInternal
     {
-        bool IsPartOfATable { get; }
+        bool IsPartOfATable { get; set; }
     }
 }

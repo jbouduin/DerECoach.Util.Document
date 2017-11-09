@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace Bouduin.Util.Document.Generic.Document
+﻿
+namespace Bouduin.Util.Document.Generic.Documents
 {
 
     internal abstract class ADocumentContent : IDocumentContentInternal
@@ -29,12 +28,25 @@ namespace Bouduin.Util.Document.Generic.Document
         
         public virtual IDocument DocumentInternal
         {
-            set { _document = value; }
+            set { SetDocumentInternal(value); }
         }
 
         public virtual IDocumentContent ParentInternal
         {
             set { _parent = value; }
+        }
+        #endregion
+
+        #region protected methods ---------------------------------------------
+
+        protected void SetDocumentInternal(IDocument document)
+        {
+            _document = document;
+        }
+
+        protected void SetParentInternal(IDocumentContent parent)
+        {
+            _parent = parent;
         }
         #endregion
     }

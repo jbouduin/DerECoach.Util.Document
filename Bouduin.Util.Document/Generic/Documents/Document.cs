@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Drawing;
@@ -9,7 +8,7 @@ using Bouduin.Util.Document.Generic.Header;
 using Bouduin.Util.Document.Primitives;
 using Bouduin.Util.Document.Rtf.Attributes;
 
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     
     /// <summary>
@@ -147,7 +146,7 @@ namespace Bouduin.Util.Document.Generic.Document
         #region constructor ---------------------------------------------------
         public Document()
         {
-            _documentContents.CollectionChanged += Contents_CollectionChanged;
+            _documentContents.CollectionChanged += ContentsCollectionChanged;
             DefaultLanguage = ELanguage.EnglishUnitedStates;
         }
 
@@ -159,7 +158,7 @@ namespace Bouduin.Util.Document.Generic.Document
         #endregion
 
         #region collection event ----------------------------------------------
-        void Contents_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        void ContentsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add || e.Action == NotifyCollectionChangedAction.Replace)
             {

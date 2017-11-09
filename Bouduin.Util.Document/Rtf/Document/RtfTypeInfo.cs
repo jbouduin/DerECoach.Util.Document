@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Bouduin.Util.Common.Extensions;
-using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Rtf.Attributes;
 
 namespace Bouduin.Util.Document.Rtf.Document

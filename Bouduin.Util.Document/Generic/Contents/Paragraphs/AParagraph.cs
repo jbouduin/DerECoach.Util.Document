@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using Bouduin.Util.Document.Generic.Contents.Text;
-using Bouduin.Util.Document.Generic.Document;
+using Bouduin.Util.Document.Generic.Documents;
 using Bouduin.Util.Document.Generic.Formatting;
 using Bouduin.Util.Document.Rtf.Attributes;
 
@@ -31,13 +31,13 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         /// </summary>
         public void AppendText(string text)
         {
-            AppendText(new PlainText(text));
+            AppendContent(new PlainText(text));
         }
 
         /// <summary>
         /// Add text to paragraph contents
         /// </summary>
-        public void AppendText(IParagraphContent text)
+        public void AppendContent(IParagraphContent text)
         {
             if (Paragraphs.Count == 0)
             {
@@ -45,7 +45,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
             }
             else
             {
-                ParagraphsInternal.Last().AppendText(text);
+                ParagraphsInternal.Last().AppendContent(text);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Bouduin.Util.Document.Generic.Contents.Paragraphs
         protected AParagraph(IParagraphContent paragraphContent)
             : this()
         {
-            AppendText(paragraphContent);
+            AppendContent(paragraphContent);
         }
         #endregion
 

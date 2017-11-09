@@ -1,4 +1,4 @@
-﻿using Bouduin.Util.Document.Generic.Document;
+﻿using Bouduin.Util.Document.Generic.Documents;
 
 namespace Bouduin.Util.Document.Rtf.Document
 {

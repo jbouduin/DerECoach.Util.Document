@@ -3,7 +3,7 @@ using Bouduin.Util.Document.Rtf.Attributes;
 
 // ReSharper disable InconsistentNaming
 
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     /// <summary>
     /// Specifies language.

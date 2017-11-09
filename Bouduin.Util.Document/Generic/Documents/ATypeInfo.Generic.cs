@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Bouduin.Util.Document.Generic.Document
+namespace Bouduin.Util.Document.Generic.Documents
 {
     internal abstract class ATypeInfo<TAttributeInfo> : ATypeInfo
         where TAttributeInfo : AAttributeInfo, new() 
